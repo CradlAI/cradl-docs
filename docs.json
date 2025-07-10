@@ -31,10 +31,8 @@
               "essentials/navigation",
               "essentials/reusable-snippets"
             ]
-          }
-        ]
-      },
-      {
+          },
+          {
             "group": "Security",
             "pages": [
               "/security"
