@@ -24,9 +24,9 @@
            {
             "group": "Integrations",
             "pages": [
-              "excel",
-              "quickstart",
-              "development"
+              "integrations/excel",
+              "integrations/zapier",
+              "integrations/powerautomate"
             ]
           },
           {
