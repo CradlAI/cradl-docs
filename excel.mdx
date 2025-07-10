@@ -1,11 +1,21 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in under 5 minutes"
+title: "Excel"
+description: "This document outlines the functionality and characteristics of the Google Sheets Writer node, which enables automated data writing to Google Sheets. "
 ---
 
-## Setup your development
+## Overview
 
-Learn how to update your docs locally and deploy them to the public.
+The Google Sheets Writer node allows you to write data to Google Sheets from your Cradl AI workflow. It can append new rows, add a single row, or write to specific columns in your spreadsheet.
+
+### Basic node operation
+
+The Google Sheets Writer node works by mapping your flow’s outputs to spreadsheet columns:
+
+1. **Sheet Connection**: Connect to an existing Google Sheet
+2. **Column Detection**: The node reads the headers in the first row of your selected sheet
+3. **Dynamic Inputs**: These headers become available as inputs to the node
+4. **Data Mapping**: Connect outputs from previous nodes to these column inputs
+5. **Execution**: When the flow runs, data is written to the corresponding columns
 
 ### Edit and preview
 

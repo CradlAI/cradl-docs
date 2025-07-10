@@ -21,6 +21,14 @@
               "development"
             ]
           },
+           {
+            "group": "Integrations",
+            "pages": [
+              "excel",
+              "quickstart",
+              "development"
+            ]
+          },
           {
             "group": "Essentials",
             "pages": [
