@@ -35,6 +35,14 @@
         ]
       },
       {
+            "group": "Security",
+            "pages": [
+              "/security"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "API Reference",
         "groups": [
           {
