@@ -23,7 +23,6 @@
                     {
             "group": "Core concepts",
             "pages": [
-              "index",
               "ai-model",
               "workflow",
               "human-in-the-loop"
@@ -90,8 +89,8 @@
           "icon": "slack"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "anchor": "Tutorials",
+          "href": "https://www.youtube.com/@CradlAI",
           "icon": "youtube"
         }
       ]
