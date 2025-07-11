@@ -15,7 +15,7 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": [
+            "dropdown": [
               "index",
               "quickstart"
             ]
