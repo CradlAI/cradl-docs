@@ -17,8 +17,9 @@
             "group": "Get Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "ai-model",
+              "workflow",
+              "human-in-the-loop"
             ]
           },
            {
