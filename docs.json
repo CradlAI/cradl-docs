@@ -17,6 +17,13 @@
             "group": "Get Started",
             "pages": [
               "index",
+              "quickstart"
+            ]
+          },
+                    {
+            "group": "Core concepts",
+            "pages": [
+              "index",
               "ai-model",
               "workflow",
               "human-in-the-loop"
