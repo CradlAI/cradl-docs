@@ -15,6 +15,7 @@
         "groups": [
           {
             "group": "Get Started",
+            "icon": "book",
             "pages": [
               "index",
               "quickstart"
@@ -23,9 +24,10 @@
                     {
             "group": "Core concepts",
             "pages": [
-              "ai-model",
-              "workflow",
-              "human-in-the-loop"
+              "core-concepts/runs",
+              "core-concepts/ai-model",
+              "core-concepts/workflow",
+              "core-concepts/human-in-the-loop"
             ]
           },
            {
