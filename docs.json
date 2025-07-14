@@ -48,6 +48,17 @@
             ]
           },
           {
+          "dropdowns": [
+           {
+          "dropdown": "Documentation",
+          "icon": "book-open",
+          "pages": [
+            "quickstart",
+            "development",
+            "navigation"
+            ]
+          },
+          {
             "group": "Security",
             "pages": [
               "/security"
