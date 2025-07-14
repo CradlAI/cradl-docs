@@ -16,8 +16,7 @@
           {
             "group": "Get Started",
             "pages": [
-              "index",
-              "icon": "book",
+              "index" "icon": "pencil",
               "quickstart"
             ]
           },
