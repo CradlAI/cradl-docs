@@ -110,7 +110,7 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
+      "label": "Get started",
       "href": "https://dashboard.mintlify.com"
     }
   },
