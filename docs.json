@@ -34,7 +34,8 @@
             "pages": [
               "integrations/excel", 
               "integrations/zapier",
-              "integrations/powerautomate"
+              "integrations/powerautomate",
+              "integrations/make"
             ]
           },
           {
