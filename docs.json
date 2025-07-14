@@ -16,7 +16,7 @@
           {
             "group": "Get Started",
             "pages": [
-              "index" "icon": "pencil",
+              "index",
               "quickstart"
             ]
           },
