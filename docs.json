@@ -32,9 +32,13 @@
            {
             "group": "Integrations",
             "pages": [
+              "integrations/email", 
               "integrations/excel", 
+              "integrations/googledrive", 
+              "integrations/onedrive", 
               "integrations/zapier",
               "integrations/powerautomate",
+              "integrations/n8n", 
               "integrations/make"
             ]
           },
