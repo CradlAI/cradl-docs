@@ -1,6 +1,68 @@
 ---
-title: 'Google Drive'
+title: "Google Drive "
 icon: "/icons/googledrive.svg"
-description: 'Description of your new file.'
+description: "Import document files or export parsed data to a folder in Google Drive."
 ---
 
+<Info>
+  This integration is coming soon.
+</Info>
+
+The **Google Drive integration** in Cradl AI allows you to connect your Google Drive account to automate document processing workflows. You can use Google Drive both as a **trigger** (to import files for processing) and as an **export destination** (to save processed outputs).
+
+### Use Cases
+
+- **Automatically process new files** uploaded to a specific Google Drive folder.
+- **Save extracted data, parsed files, or processed documents** directly back to Google Drive.
+- Combine Google Drive with other integrations (e.g., email, Slack, webhooks) for end-to-end automation.
+
+---
+
+## How It Works
+
+### Use Google Drive as a Trigger
+
+**When to use:**\
+Trigger your workflow when new files are added to a selected Google Drive folder.
+
+**How to set up:**
+
+1. Connect your Google Drive account to Cradl AI.
+2. Choose **Google Drive** as the trigger app.
+3. Select the folder you want Cradl AI to monitor.
+4. Define file types or naming patterns to include/exclude.
+5. When a file matching your criteria is added, Cradl AI will automatically pick it up for processing.
+
+---
+
+### Use Google Drive as an Export
+
+**When to use:**\
+Send your processed files, extracted data, or custom outputs back to Google Drive.
+
+**How to set up:**
+
+1. In your workflow’s **Export** step, select **Google Drive** as the export destination.
+2. Choose the target folder where you’d like to save the output.
+3. Define the output file format (e.g., JSON, PDF, CSV) and file naming convention.
+4. Optional: Set up folder structures dynamically using extracted fields (e.g., save invoices by date or client name).
+
+---
+
+## Security & Permissions
+
+When you connect your Google Drive account, Cradl AI uses secure OAuth 2.0 authentication. You can revoke access anytime from your Google account settings. Cradl AI only requests the minimum permissions needed to read from and write to the specified folders.
+
+---
+
+## Example Workflow
+
+> **Example:** Automatically extract invoice data and save a structured JSON file back to Drive.
+>
+> 1. **Trigger:** New PDF uploaded to `/Invoices/Incoming` folder.
+> 2. **Process:** Cradl AI extracts the invoice data using your trained model.
+> 3. **Export:** Structured JSON and a copy of the original file are saved to `/Invoices/Processed`.
+
+---
+
+## 
