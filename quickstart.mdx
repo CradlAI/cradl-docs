@@ -6,42 +6,66 @@ description: "Getting started with Cradl AI is fast and simple, you can be up an
 
 ### Step 1: Start with a template
 
-The fastest way to get up and running is to copy a template.
+The fastest way to get started with Cradl AI is by copying a ready-made **Agent template**. 
 
 <Steps>
   <Step title="Select template" icon="1" iconType="regular" stepNumber={1}>
-    After creating your account, simply choose the agent template that’s closest to your use case. Every setting is fully customizable, so you can adapt your agent to match your specific document type and workflow. If none of the templates fit your needs, you can always start with the **Custom** option.
+    After creating your account, pick a template that best matches your use case. Every setting is fully customizable, so you can fine-tune your Agent to handle your specific document type and workflow. If none of the templates resembles your use case, you can always build an Agent from scratch using the **Custom** option.
 
-    <img 
-  src="/images/select-template.webp" 
-  alt="Main dashboard interface"
-  height="300"
-  className="rounded-lg"
-/>
+    <img
+      src="/images/select-template.webp"
+      alt="select template"
+      height="300"
+      className="rounded-lg"
+      title="select template"
+    />
   </Step>
   <Step title="Add integrations">
-    Next step in the onboarding, you’ll also define **how you plan to integrate** your agent into your workflow. Your agent will be set up with this intent in mind, but you’ll configure the actual integrations later.
+    Next step in the onboarding, you’ll also define **how you plan to integrate** your Agent into your workflow (e.g., export to a spreadsheet, database, or third-party app). This won’t set up the actual integration yet, but it helps configure your Agent with the right intent.
   </Step>
   <Step title="Import a test document">
-    Once your agent is created, you’ll be directed to the **Runs** view. This is where you’ll see all documents processed by your AI agent. If you selected a template, we’ll add a **sample document** that’s flagged for human review, so you can test your agent right away. Before setting up automatic imports, you can also manually import documents by clicking **Import** in the top right corner.
+    Once your Agent is created, you’ll be taken to the **Runs view** - the central place where all processed documents are listed.
+
+    If you selected a template, we’ll automatically include a **sample document** flagged for review, so you can immediately test your Agent. You can also **manually upload documents** at any time by clicking **Import** in the top-right corner, a great way to test before setting up automatic imports.
   </Step>
   <Step title="Review predictions">
     To review results, click on a document in the Runs table or use the _Review_ button to open the review interface. Here, you can check the AI’s predictions, make any needed corrections, and export your data by clicking **Confirm** when you’re ready.
+
+    To review results, click on any document in the **Runs table** or use the **Review** button to open the review interface.
+
+    Here, you can:
+
+    - **Check the AI’s predictions** for each field
+    - **Make corrections** as needed - your Agent learns from every edit
+    - **Export your data** by clicking **Confirm** when you're ready. 
+
+      <Note>
+        **Note:** Data won't be exported automatically until you've set up an export integration. 
+      </Note>
   </Step>
 </Steps>
 
-### Step 2: Edit your AI model
+### **Step 2: Edit your AI model**
 
-To configure what your AI model extracts, and
+To control what your AI model extracts, head to the **Workflows** section in the navigation panel.
 
-1. Go to the **Workflows** section in the navigation panel.
-2. Click on the \*\*Exctract with AI \*\*node.
+1. Click on the **Extract with AI** node.
+2. In the panel on the right, you can:
+   - **Add new fields** for the AI to extract
+   - **Define validation rules** to ensure data accuracy
+   - **Add formatters** to make sure the output is consistent
 
-In the panel on your right you can:
+Customize your model to match the structure and requirements of your specific documents.
 
-- add new fields you want your AI model to extract.
-- Add validation rules
+---
 
-### Step 3: Setup integrations
+### **Step 3: Set up integrations**
 
-in
+To connect your AI Agent to the rest of your workflow, you’ll need to configure integrations.
+
+In the **Workflows** section, you can:
+
+- **Add triggers** to automatically process new documents
+- **Set up export destinations** (e.g., databases, spreadsheets, or external tools)
+
+This ensures your extracted data flows seamlessly into the systems where it’s needed.
