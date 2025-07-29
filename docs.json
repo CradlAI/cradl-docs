@@ -33,6 +33,7 @@
             "group": "Integrations",
             "pages": [
               "integrations/email", 
+              "integrations/webhook", 
               "integrations/excel", 
               "integrations/googlesheets",
               "integrations/googledrive", 
