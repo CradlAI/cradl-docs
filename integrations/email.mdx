@@ -1,7 +1,65 @@
 ---
-title: "Email"
+title: "Mailhooks Trigger Integration"
 icon: "/icons/email.svg"
 description: "Trigger your Agent by emailing documents to a dedicated email address."
+sidebarTitle: "Email (mailhooks)"
 ---
 
-The email trigger lets you trigger workflow runs when an email is received on a uniquely generated email address just for your Agent.
+Cradl AI now supports triggering document parsing workflows directly from incoming emails using **Mailhooks**. This integration allows you to automate document ingestion by simply sending or forwarding emails to a unique email address.
+
+### How It Works
+
+1. You get a unique email address tied to your Cradl AI Agent.
+2. You send or forward emails with attachments to this address.
+3. Cradl AI receives the email, extracts the attachment(s), and runs them through the specified Agent.
+
+---
+
+### Setup Instructions
+
+### 1. Create a Mailhook Trigger
+
+1. Navigate to the **Workflows** tab in your parser.
+2. Click **Add Trigger** → Choose **Mailhook**.
+3. Copy your generated email address (e.g., `12345678910@agent.cradl.ai`).
+
+---
+
+### 2. Send Documents via Email
+
+Send an email to the mailhook address with one or more supported attachments.
+
+**Example:**
+
+```
+To: invoice-parser@docs.cradl.ai
+Subject: Invoice for July
+Attachments: invoice-july.pdf
+```
+
+Attachments will be processed automatically. 
+
+---
+
+## Security & Spam Protection
+
+- Mailhooks are tied to your account and can be regenerated or disabled anytime.
+- Incoming emails are scanned for malware.
+- You can restrict allowed sender domains in the Trigger settings.
+
+---
+
+## ❓FAQ
+
+**Can I forward emails from Gmail or Outlook?**\
+Yes\! Just forward the email and make sure the attachments come through.
+
+**What types of attachments are supported?**\
+PDFs, PNGs, JPEGs, WEBPs and TIFFs.
+
+**What happens if an email has no attachment?**\
+The email will be ignored and no parsing will occur.
+
+---
+
+## 
