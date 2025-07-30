@@ -20,7 +20,7 @@
               "quickstart"
             ]
           },
-                    {
+          {
             "group": "Core concepts",
             "pages": [
               "core-concepts/runs",
@@ -29,21 +29,23 @@
               "core-concepts/human-in-the-loop"
             ]
           },
-           {
+          {
             "group": "Integrations",
             "pages": [
-              "integrations/email", 
-              "integrations/webhook", 
-              "integrations/excel", 
+              "integrations/email",
+              "integrations/webhook",
+              "integrations/excel",
               "integrations/googlesheets",
-              "integrations/googledrive", 
-              "integrations/onedrive", 
+              "integrations/googledrive",
+              "integrations/onedrive",
               "integrations/zapier",
               "integrations/powerautomate",
-              "integrations/n8n", 
+              "integrations/n8n",
               "integrations/make"
             ]
-          },
+          }
+        ]
+      },
       {
         "tab": "API Reference",
         "groups": [
