@@ -44,25 +44,6 @@
               "integrations/make"
             ]
           },
-          {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "Security",
-            "pages": [
-              "/security"
-            ]
-          }
-        ]
-      },
       {
         "tab": "API Reference",
         "groups": [
