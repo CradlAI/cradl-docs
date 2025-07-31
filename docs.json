@@ -26,7 +26,7 @@
               "core-concepts/runs",
               {
                 "group": "AI Model",
-                "icon": "/icons/ai-model.svg",
+                "icon": "https://mintlify.s3.us-west-1.amazonaws.com/cradl-c8140fcc/icons/ai-model.svg",
                 "pages": [
                   "core-concepts/ai-model/overview",
                   "core-concepts/ai-model/prompting"
