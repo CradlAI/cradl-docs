@@ -26,7 +26,7 @@
               "core-concepts/runs",
               {
                 "group": "AI Model",
-                "icon": "ai-model",
+                "icon": "play",
                 "pages": [
                   "core-concepts/ai-model/overview",
                   "core-concepts/ai-model/prompting"
