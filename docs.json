@@ -26,6 +26,7 @@
               "core-concepts/runs",
               {
                 "group": "AI Model",
+                "icon": "ai-model",
                 "pages": [
                   "core-concepts/ai-model/overview"
                 ]
