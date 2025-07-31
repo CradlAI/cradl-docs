@@ -95,20 +95,20 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@cradl.ai"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Get started",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://cal.com/cradlai/30min"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/cradl_ai",
+      "github": "https://github.com/cradlai",
+      "linkedin": "https://www.linkedin.com/company/cradl-ai/"
     }
   }
 }
