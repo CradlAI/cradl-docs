@@ -35,13 +35,13 @@
               "integrations/email",
               "integrations/webhook",
               "integrations/excel",
+              "integrations/powerautomate",
+              "integrations/zapier",
+              "integrations/make",
+              "integrations/n8n",
               "integrations/googlesheets",
               "integrations/googledrive",
-              "integrations/onedrive",
-              "integrations/zapier",
-              "integrations/powerautomate",
-              "integrations/n8n",
-              "integrations/make"
+              "integrations/onedrive"
             ]
           }
         ]
