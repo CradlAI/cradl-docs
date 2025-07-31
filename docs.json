@@ -28,7 +28,8 @@
                 "group": "AI Model",
                 "icon": "ai-model",
                 "pages": [
-                  "core-concepts/ai-model/overview"
+                  "core-concepts/ai-model/overview",
+                  "core-concepts/ai-model/prompting"
                 ]
               },
               "core-concepts/workflow",
