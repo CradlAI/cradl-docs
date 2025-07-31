@@ -24,7 +24,12 @@
             "group": "Core concepts",
             "pages": [
               "core-concepts/runs",
-              "core-concepts/ai-model",
+              {
+                "group": "AI Model",
+                "pages": [
+                  "core-concepts/ai-model/overview"
+                ]
+              },
               "core-concepts/workflow",
               "core-concepts/human-in-the-loop"
             ]
