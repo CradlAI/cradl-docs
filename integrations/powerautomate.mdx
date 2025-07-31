@@ -4,6 +4,32 @@ icon: "/icons/powerautomate.svg"
 description: "Connect a Cradl AI agent to a flow in Power Automate."
 ---
 
+### Cradl AI → Power Automate
+
+Getting extracted data from Cradl AI into Power Automate using an HTTP request trigger.
+
+<Steps>
+  <Step title="Create a flow">
+    In Power Automate, create an **Instant Cloud Flow** with the trigger **"When an HTTP request is received."**
+  </Step>
+  <Step title="Allow access">
+    Click **"Who can trigger the flow?"** and set it to **"Anyone"**. You can secure the flow using a signature or header if needed.
+  </Step>
+  <Step title="Save the flow and copy the URL">
+    Save the flow to generate a **trigger URL**.\
+    Go to **Cradl AI \> Integrations tab** and **paste the URL** into the integration field.
+  </Step>
+  <Step title="Copy and paste the JSON schema">
+    In Cradl AI, copy the JSON schema from the Integrations tab.
+    Back in Power Automate, paste it into the Request Body JSON Schema field to access the data as variables.
+  </Step>
+  <Step title="Build your flow logic">
+    Use the parsed fields in your flow to continue automation (e.g., send email, store in database, etc.).
+  </Step>
+</Steps>
+
+### Power Automate → Cradl AI
+
 <Info>
   **Note:** This integration is coming soon\!
 </Info>
