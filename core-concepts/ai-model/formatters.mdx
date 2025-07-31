@@ -1,0 +1,21 @@
+---
+title: "Formatters"
+description: "Formatters enable you to transform and normalize the extracted values."
+---
+
+### Why use formatters?
+
+When extracting values like dates, numbers, or currency amounts, consistency is key. Formatters allow you to clean up and standardize this data automatically — ensuring it’s ready for downstream systems.
+
+Typical use cases include:
+
+- **Normalizing dates**  
+  Convert various date formats into a standardized format such as ISO 8601 (`YYYY-MM-DD`), regardless of how the date appears in the source document.
+
+- **Cleaning up numbers**  
+  Remove spaces, local separators, or other inconsistencies to ensure all numbers follow a consistent format, like `1,000.00`.
+
+- **Formatting currencies**  
+  Strip unnecessary symbols or convert values into your preferred currency format to make them easier to store and compare.
+
+Formatters run after extraction, so your model can focus on identifying the correct values — and the formatter ensures those values are clean, consistent, and ready to use.

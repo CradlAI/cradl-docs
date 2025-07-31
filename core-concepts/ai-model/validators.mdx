@@ -1,0 +1,24 @@
+---
+title: "Validators"
+description: "Validators enable you to automatically validate fields instead of having to review everything."
+---
+
+### Automatically validate your extracted data
+
+Validators let you define rules that check whether extracted fields meet your requirements — so you only review documents that actually need attention. This helps you reduce manual work and improve data quality at scale.
+
+### Available Validators
+
+Here’s a quick overview of the validators you can use to automatically flag documents for review:
+
+- **Confidence threshold**  
+  Triggers a review if the model’s confidence in a field is below a specified percentage. Useful for catching uncertain predictions.
+
+- **Logical expression**  
+  Validates a field using custom logic (e.g. `total_amount > 0`). Ideal for numeric checks, date comparisons, and other business rules.
+
+- **RegEx**  
+  Ensures that a field matches a specific pattern using regular expressions. Great for validating formats like postal codes, VAT numbers, or phone numbers.
+
+- **Cannot be empty**  
+  Flags the document if a required field is missing or empty. Use this to make sure essential information is always extracted.
