@@ -11,14 +11,11 @@ Formatters help you clean up and standardize extracted values — so your data i
 
 Here’s a quick overview of the formatters you can use to normalize your extracted data:
 
-- **Numeric**  
-  Cleans up numbers by removing spaces and separators, ensuring a consistent numeric format (e.g. `1,000.00`).
-
-- **Date**  
-  Converts dates into a standard format, such as ISO 8601 (`YYYY-MM-DD`), regardless of how the date is written in the source.
-
-- **RegEx**  
-  Extracts a specific part of a field using regular expressions. Useful when the raw value contains more than you need.
-
-- **Classification**  
-  Maps raw values to standardized labels or categories. Ideal for normalizing statuses, payment terms, or other predefined sets.
+- **Numeric**\
+  Cleans up numbers by removing spaces and separators, ensuring a consistent numeric format (e.g. `1000.00`).
+- **Date**\
+  Converts dates into a standard format, such as ISO 8601 (`YYYY-MM-DD`), regardless of how the date is written in your document.
+- **RegEx**\
+  Extracts a specific part of a field using regular expressions. Useful when the raw value contains more than you need. For example, you can use a RegEx formatter to remove the prefix INV- from all invoice numbers, so INV-1023 becomes 1023.
+- **Classification**\
+  Maps  values to pre-defined categories or classes. Useful for tasks like determining the document type (e.g. Invoice, Receipt, Contract) or checking whether a document has been signed (e.g. Signed or Not Signed).
