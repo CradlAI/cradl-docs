@@ -29,7 +29,9 @@
                 "icon": "https://mintlify.s3.us-west-1.amazonaws.com/cradl-c8140fcc/icons/ai-model.svg",
                 "pages": [
                   "core-concepts/ai-model/overview",
-                  "core-concepts/ai-model/prompting"
+                  "core-concepts/ai-model/prompting",
+                  "core-concepts/ai-model/validators",
+                  "core-concepts/ai-model/formatters"
                 ]
               },
               "core-concepts/workflow",
