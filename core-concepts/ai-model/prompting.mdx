@@ -1,0 +1,37 @@
+---
+title: "Prompting"
+---
+
+Prompt design is an iterative process that benefits from experimentation. Start with simple instructions, then refine by adding context and constraints. Throughout this guide, you’ll learn how clarity, specificity, and conciseness often lead to better results.
+
+## Be Clear and Concise
+
+AI models respond best to clear, direct language. Avoid conversational or ambiguous phrasing.
+
+<Tip>
+  **Do:** The total amount, including taxes.
+</Tip>
+
+<Danger>
+  **Don’t:** Can you please extract the amount from my invoice?
+</Danger>
+
+## Include Examples
+
+Examples help the model understand the type of data to extract or generate.
+
+<Tip>
+  **Do:** The bank account number, often written as XXX.YYYY.ZZZZ.
+</Tip>
+
+## Provide Alternative Wordings
+
+If fields may appear with different labels, include common synonyms, abbreviations, or variations.
+
+<Tip>
+  **Do:** Vehicle registration number, sometimes listed as V/N or VR#.
+</Tip>
+
+## Avoid Output Formatting Instructions
+
+Avoid telling the model how to format outputs (e.g., “return the date in ISO format”). Instead, rely on built-in formatters from the formatter library to handle output presentation.
