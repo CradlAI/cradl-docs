@@ -1,116 +1,72 @@
 ---
 title: "Webhook"
 icon: "/icons/webhook.svg"
-description: "Use webhooks to get real-time notifications when key events happen in your Cradl AI workspace."
+description: "Use webhooks to export data from Cradl AI using HTTP."
 sidebarTitle: "Webhook"
 ---
 
-Webhooks allow you to receive automatic notifications when your Cradl AI agenst process documents, predictions complete, or other events occur. With webhooks, you can build custom integrations such as:
+Webhooks allow you to receive event notifications from Cradl AI, such as when a document has been processed by an AI Agent. When an event occurs, Cradl AI will send an HTTP `POST` request to your webhook endpoint configured for the event type. The payload carries a JSON object. You can then use the information from the request's JSON payload to send the data where you need it.
 
-- Automatically syncing extracted data to your database.
-- Triggering a Zapier workflow when a new document is processed.
-- Sending prediction results to a data pipeline (e.g. Segment) in real-time.
-- Notifying your team in Slack when a new document is uploaded and processed.
-- Powering custom automation flows, such as creating invoices in your ERP system when new data is extracted.
+### Exporting data from Cradl AI using Webhooks
 
-**Note:** Events triggered by bulk operations (e.g. bulk upload or bulk delete) may not always trigger individual webhook events.
+Use Webhooks to send extracted document data from Cradl AI to any external system via HTTP.
 
----
+<Steps>
+  <Step title="Open the Integrations tab">
+    Go to the \*\*Workflow **section**, \*\*click the  **_\+ add export_** and select **Webhook**.
 
-## Creating a Webhook
+    ![Webhook Step1 Web](/images/webhook-step1.webp)
+  </Step>
+  <Step title="Set the endpoint URL">
+    Enter the **URL** you want Cradl AI to send data to. Supported HTTP methods: **POST**, **PUT**, and **GET**.
+  </Step>
+  <Step title="Choose HTTP method">
+    Select the method matching your receiving system’s expectations.
+  </Step>
+  <Step title="Add optional headers">
+    Add custom **HTTP headers** such as `Authorization` or `Content-Type` if required by your endpoint.
+  </Step>
+  <Step title="Receive data as JSON">
+    When a document is processed, Cradl AI sends a structured **JSON payload** to your endpoint.
+  </Step>
+</Steps>
 
-To create a webhook for your Cradl AI workspace, follow these steps:
+### Payload structure
 
-1. **Go to Webhooks settings**
+The payload of a webhook is a JSON object that contains the following properties:
 
-   Navigate to the **Webhooks** section in your [Cradl AI Dashboard](https://app.cradl.ai/).
-2. **Click “Create Webhook”**
+- `documentId`: Unique ID of the processed document
+- `documentUrl`: Link to view the document in Cradl AI
+- `modelId`: ID of the model used for extraction
+- `modelName`: Name of the extraction model
+- `createdAt`: Time the document was processed
+- `fields`: Extracted fields from the document
+- `rawText`: Full raw text (optional, based on your export settings)
 
-   Select **Create Webhook** to start setting up a new webhook.
-3. **Fill in the webhook form**
-   - **Name:** Give your webhook a clear, descriptive name.
-   - **URL:** Enter the HTTPS URL for your server endpoint where Cradl AI should send the webhook payload. [**_(Tip: Use webhook.site for quick testing.)_**](http://webhook.site)
-   - **Signing Secret:** A unique secret is auto-generated for you. Use this to verify the authenticity of incoming webhook requests.
-   - **Events:** Select one or more events you’d like to listen to. See [Available Events](https://chatgpt.com/c/68761beb-55b0-800c-8dae-f0b8dd0a2c3d#available-events).
-4. **Click “Create Webhook”**
+Below is an example of the payload Cradl AI sends to your webhook URL:
 
-   Save your webhook to start receiving real-time notifications.
+```json
+{
+  "documentId": "doc_123456789",
+  "documentUrl": "https://app.cradl.ai/docs/doc_123456789",
+  "modelId": "model_abc123",
+  "modelName": "Invoice Parser",
+  "createdAt": "2025-08-01T12:00:00Z",
+  "fields": {
+    "invoice_number": "INV-1001",
+    "date": "2025-07-30",
+    "total_amount": "1599.00",
+    "currency": "USD",
+    "vendor_name": "Example Corp"
+  },
+  "rawText": "Optional full text of the document..."
+}
+```
 
----
+### 
 
-## Available Events
-
-Here are some common webhook event types you can subscribe to:
-
-| Event                  | Description                                                       |
-| :--------------------- | :---------------------------------------------------------------- |
-| `document.uploaded`    | Triggered when a new document is uploaded                         |
-| `document.processed`   | Triggered when a document has been successfully processed         |
-| `prediction.completed` | Triggered when a prediction is complete and results are available |
-| `document.failed`      | Triggered if document processing fails                            |
-
-We’re always adding new events — check the dashboard for the latest list.
-
----
-
-## Viewing Webhook Logs
-
-You can monitor webhook deliveries right in your dashboard:
-
-1. Go to **Webhooks settings**.
-2. Select the webhook you’d like to inspect.
-3. Click on the **Logs** tab.
-
-Here, you’ll see all webhook events sent to your endpoint, their delivery status, and detailed payloads for debugging.
-
----
-
-## Sending Test Events
-
-Want to verify that your integration works before going live? You can send test events:
-
-1. Open your **Webhook Details** page.
-2. Click the **⋮** icon in the top-right corner and select **Send Test Event**.
-3. Pick an event type and click **Send Test Webhook**.
-
-You’ll see a confirmation, and the test event will be sent to your webhook URL immediately.
-
----
-
-## Retry Behavior
-
-If your webhook endpoint doesn’t respond with a successful `2XX` status code, Cradl AI will automatically retry delivery to ensure you don’t miss critical events.
-
-**Retry schedule:**
-
-| Attempt        | Delay          |
-| :------------- | :------------- |
-| 1st            | 10 seconds     |
-| 2nd            | 2 minutes      |
-| 3rd            | 30 minutes     |
-| 4th            | 6 hours        |
-| 5th and onward | Every 24 hours |
-
-Retries use an exponential backoff and will continue up to 24 hours after the 5th attempt.
-
----
-
-## Automatic Disablement
-
-To maintain system stability, Cradl AI will automatically disable a webhook if your endpoint fails repeatedly:
-
-- Notifications will be sent to workspace admins after 5, 10, and 15 consecutive failed attempts.
-- After 20 failed attempts, the webhook will be disabled automatically.
-- You can re-enable it anytime by visiting the **Webhook Details** page and clicking **Enable Webhook**.
-
----
-
-## Securing Webhooks
+### **Securing Webhooks**
 
 - Always use HTTPS endpoints.
 - Validate the **Signing Secret** on incoming requests to confirm they came from Cradl AI.
 - Respond quickly — your endpoint should acknowledge receipt with a `2XX` status code within a few seconds.
-
-**Need help?** If you have any questions or ideas for more event types, we’d love to hear from you\!
-
----
