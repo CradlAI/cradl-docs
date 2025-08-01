@@ -47,19 +47,59 @@ Below is an example of the payload Cradl AI sends to your webhook URL:
 
 ```json
 {
-  "documentId": "doc_123456789",
-  "documentUrl": "https://app.cradl.ai/docs/doc_123456789",
-  "modelId": "model_abc123",
-  "modelName": "Invoice Parser",
-  "createdAt": "2025-08-01T12:00:00Z",
-  "fields": {
-    "invoice_number": "INV-1001",
-    "date": "2025-07-30",
-    "total_amount": "1599.00",
-    "currency": "USD",
-    "vendor_name": "Example Corp"
-  },
-  "rawText": "Optional full text of the document..."
+  "output": {
+    "buyer_name": {
+      "confidence": 0.966,
+      "rawValue": "Cradl AI",
+      "value": "Cradl AI"
+    },
+    "currency": {
+      "confidence": 0.99,
+      "rawValue": "USD",
+      "value": "USD"
+    },
+    "due_date": {
+      "confidence": 0.961,
+      "rawValue": "09.11.2026",
+      "value": "2026-09-11"
+    },
+    "invoice_lines": [
+      {
+        "description": {
+          "confidence": 0.958,
+          "rawValue": "Coca-Cola",
+          "value": "Coca-Cola"
+        },
+        "line_total": {
+          "confidence": 0.99,
+          "rawValue": "$99",
+          "value": "99.00"
+        }
+      },
+      {
+        "description": {
+          "confidence": 0.99,
+          "rawValue": "Pizza",
+          "value": "Pizza"
+        },
+        "line_total": {
+          "confidence": 0.99,
+          "rawValue": "$49,00",
+          "value": "49.00"
+        }
+      },
+    ],
+    "supplier_name": {
+      "confidence": 0.99,
+      "rawValue": "Coke & Pizza Inc",
+      "value": "Coke & Pizza Inc"
+    },
+    "total_amount": {
+      "confidence": 0.99,
+      "rawValue": "USD 148,00",
+      "value": "148.00"
+    }
+  }
 }
 ```
 
