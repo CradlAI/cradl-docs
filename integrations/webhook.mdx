@@ -93,10 +93,46 @@ Below is an example of the payload Cradl AI sends to your webhook URL:
 }
 ```
 
-### 
+### Securing Your Webhook
 
-### **Securing Webhooks**
+To ensure the authenticity of incoming webhooks from our system, each request includes an `X-Cradl-Signature` header containing an HMAC SHA-256 signature. You can verify this signature as follows:
 
-- Always use HTTPS endpoints.
-- Validate the **Signing Secret** on incoming requests to confirm they came from Cradl AI.
-- Respond quickly — your endpoint should acknowledge receipt with a `2XX` status code within a few seconds.
+#### Step 1: Construct the Message
+
+Concatenate the following elements in order:
+
+1. The HTTP method (e.g., `POST`)
+2. The full request URL (e.g., `https://example.com/webhook`)
+3. All headers, sorted alphabetically, formatted as `key:value` and joined together
+4. The raw request body
+
+<Accordion title="Sample code" description="Python" icon="sparkles">
+  ```python
+  message = b''.join([
+      prepared_request.method.encode(),
+      prepared_request.url.encode(),
+      b''.join(f'{k}:{v}'.encode() for k, v in sorted(prepared_request.headers.items())),
+      prepared_request.body,
+  ])
+  ```
+</Accordion>
+
+#### Step 2: Compute the Signature
+
+Generate an HMAC SHA-256 hex digest using your shared secret:
+
+<Accordion title="Sample code" description="Python" icon="sparkles">
+  ```python
+  import hmac
+  import hashlib
+  
+  signature = hmac.new(
+      key=secret.encode(),
+      msg=message,
+      digestmod=hashlib.sha256,
+  ).hexdigest()
+  ```
+</Accordion>
+
+#### Step 3: Compare Signatures
+Check that the computed signature is equal to the one in the X-Cradl-Signature header to ensures the request was sent by us and not altered in transit.
