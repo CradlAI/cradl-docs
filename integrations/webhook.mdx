@@ -33,16 +33,6 @@ Use Webhooks to send extracted document data from Cradl AI to any external syste
 
 ### Payload structure
 
-The payload of a webhook is a JSON object that contains the following properties:
-
-- `documentId`: Unique ID of the processed document
-- `documentUrl`: Link to view the document in Cradl AI
-- `modelId`: ID of the model used for extraction
-- `modelName`: Name of the extraction model
-- `createdAt`: Time the document was processed
-- `fields`: Extracted fields from the document
-- `rawText`: Full raw text (optional, based on your export settings)
-
 Below is an example of the payload Cradl AI sends to your webhook URL:
 
 ```json
