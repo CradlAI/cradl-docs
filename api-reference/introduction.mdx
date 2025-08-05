@@ -1,30 +1,112 @@
 ---
 title: "Introduction"
-description: "Fundamental concepts of Cradl’s API. "
+description: "Fundamental concepts of Cradl’s API."
 ---
 
-<Note>
-  You can access our API from the Cradl AI App without any extra credentials, all you need to do is to Sign up.
-</Note>
+> **Note**\
+> You can access our API directly from the Cradl AI App without any additional credentials—just sign up to get started.
 
 ## Base URL
 
-Cradls’s API is built on REST principles and is served over HTTPS. To ensure data privacy, unencrypted HTTP is not supported.
+Cradl’s API follows REST principles and is served over HTTPS. For security, unencrypted HTTP is not supported.
 
-The Base URL for all API endpoints is:
+All API endpoints use the following base URL:
 
 ```
-https://auth.lucidtech.ai 
+https://api.lucidtech.ai/v1
 ```
 
 ## Authentication
 
-Authentication to Cradl’s API is performed via the Authorization header with a Bearer token. To authenticate, you need to include the Authorization header with the word Bearer followed by your API key in your requests like so:
+To authenticate with Cradl’s API, use the `Authorization` header with a **Bearer token**. You can obtain an access token by making the following request:
+
+```bash
+curl -X POST https://auth.cradl.ai/oauth2/token \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'grant_type=client_credentials&audience=https://api.cradl.ai&client_id=<YOUR CLIENT ID>&client_secret=<YOUR SECRET>'
+```
+
+The response will include an access token:
 
 ```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+{
+  "access_token": "<YOUR-ACCESS-TOKEN>",
+  ...
+}
 ```
+
+Use this token in **all subsequent API requests**:
+
+```http
+Authorization: Bearer <YOUR-ACCESS-TOKEN>
+```
+
+---
+
+## Creating a Run
+
+<Steps>
+  <Step title="Find your agent">
+    You can find your agent ID in the Cradl AI UI. Alternatively, you can list your agents using the API:
+
+    ```bash
+    curl -X GET https://api.lucidtech.ai/v1/agents \
+      -H "Authorization: Bearer <YOUR-ACCESS-TOKEN>"
+    ```
+
+    Example response:
+
+    ```json
+    {
+      "agents": [
+        {
+          "agentId": "cradl:agent:<YOUR-AGENT-ID>",
+          ...
+        }
+      ],
+      "nextToken": null
+    }
+    ```
+  </Step>
+  <Step title="Create a new run">
+    Once you have the agent ID, create a run:
+
+    ```bash
+    curl -X POST https://api.lucidtech.ai/v1/agents/<YOUR-AGENT-ID>/runs \
+      -H "Authorization: Bearer <YOUR-ACCESS-TOKEN>" \
+      -H "Content-Type: application/json" \
+      -d '{}'
+    ```
+
+    Example response:
+
+    ```json
+    {
+      "id": "cradl:organization:<YOUR-ORG-ID>/cradl:agent:<YOUR-AGENT-ID>/cradl:run:<YOUR-RUN-ID>",
+      ...
+    }
+    ```
+  </Step>
+  <Step title="Create and upload a document">
+    Create a document and associate it with your run:
+
+    ```bash
+    curl -X POST https://api.lucidtech.ai/v1/documents \
+      -H "Authorization: Bearer <YOUR-ACCESS-TOKEN>" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "name": "My invoice",
+        "agentRunId": "cradl:organization:<YOUR-ORG-ID>/cradl:agent:<YOUR-AGENT-ID>/cradl:run:<YOUR-RUN-ID>"
+      }'
+    ```
+
+    This response includes a `fileUrl` that you’ll use to upload your document file:
+
+    ```bash
+    curl -X PUT --data-binary @test.jpeg \
+      https://files.api.cradl.ai/cradl:file:<YOUR-DOCUMENT-ID> \
+      -H "Authorization: Bearer <YOUR-ACCESS-TOKEN>" \
+      -H "Content-Type: image/jpeg"
+    ```
+  </Step>
+</Steps>
