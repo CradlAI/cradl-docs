@@ -7,13 +7,13 @@ sidebarTitle: "Webhook"
 
 Webhooks allow you to receive event notifications from Cradl AI, such as when a document has been processed by an AI Agent. When an event occurs, Cradl AI will send an HTTP `POST` request to your webhook endpoint configured for the event type. The payload carries a JSON object. You can then use the information from the request's JSON payload to send the data where you need it.
 
-### Exporting Data from Cradl AI to Webhooks
+### Exporting data from Cradl AI using Webhooks
 
 Use Webhooks to send extracted document data from Cradl AI to any external system via HTTP.
 
 <Steps>
   <Step title="Open the Integrations tab">
-    Go to the \*\*Workflow **section**, \*\*click the  **_\+ add export_** and select **Webhook**.
+    Go to the **Workflow** **section**, click the  **_\+ add export_** and select **Webhook**.
 
     ![Webhook Step1 Web](/images/webhook-step1.webp)
   </Step>
@@ -33,110 +33,40 @@ Use Webhooks to send extracted document data from Cradl AI to any external syste
 
 ### Payload structure
 
+The payload of a webhook is a JSON object that contains the following properties:
+
+- `documentId`: Unique ID of the processed document
+- `documentUrl`: Link to view the document in Cradl AI
+- `modelId`: ID of the model used for extraction
+- `modelName`: Name of the extraction model
+- `createdAt`: Time the document was processed
+- `fields`: Extracted fields from the document
+- `rawText`: Full raw text (optional, based on your export settings)
+
 Below is an example of the payload Cradl AI sends to your webhook URL:
 
 ```json
 {
-  "output": {
-    "buyer_name": {
-      "confidence": 0.966,
-      "rawValue": "Cradl AI",
-      "value": "Cradl AI"
-    },
-    "currency": {
-      "confidence": 0.99,
-      "rawValue": "USD",
-      "value": "USD"
-    },
-    "due_date": {
-      "confidence": 0.961,
-      "rawValue": "09.11.2026",
-      "value": "2026-09-11"
-    },
-    "invoice_lines": [
-      {
-        "description": {
-          "confidence": 0.958,
-          "rawValue": "Coca-Cola",
-          "value": "Coca-Cola"
-        },
-        "line_total": {
-          "confidence": 0.99,
-          "rawValue": "$99",
-          "value": "99.00"
-        }
-      },
-      {
-        "description": {
-          "confidence": 0.99,
-          "rawValue": "Pizza",
-          "value": "Pizza"
-        },
-        "line_total": {
-          "confidence": 0.99,
-          "rawValue": "$49,00",
-          "value": "49.00"
-        }
-      },
-    ],
-    "supplier_name": {
-      "confidence": 0.99,
-      "rawValue": "Coke & Pizza Inc",
-      "value": "Coke & Pizza Inc"
-    },
-    "total_amount": {
-      "confidence": 0.99,
-      "rawValue": "USD 148,00",
-      "value": "148.00"
-    }
-  }
+  "documentId": "doc_123456789",
+  "documentUrl": "https://app.cradl.ai/docs/doc_123456789",
+  "modelId": "model_abc123",
+  "modelName": "Invoice Parser",
+  "createdAt": "2025-08-01T12:00:00Z",
+  "fields": {
+    "invoice_number": "INV-1001",
+    "date": "2025-07-30",
+    "total_amount": "1599.00",
+    "currency": "USD",
+    "vendor_name": "Example Corp"
+  },
+  "rawText": "Optional full text of the document..."
 }
 ```
 
-### Securing Your Webhook
+### 
 
-To ensure the authenticity of incoming webhooks from our system, each request includes an `X-Cradl-Signature` header containing an HMAC SHA-256 signature. You can verify this signature as follows:
+### **Securing Webhooks**
 
-<Steps>
-  <Step title="Construct the message">
-    Concatenate the following elements in order:
-
-    1. The HTTP method (e.g., `POST`)
-    2. The full request URL (e.g., `https://example.com/webhook`)
-    3. All headers, sorted alphabetically, formatted as `key:value` and joined together
-    4. The raw request body
-    
-    <Accordion title="Sample code" description="Python" icon="sparkles">
-      ```python
-      message = b''.join([
-          prepared_request.method.encode(),
-          prepared_request.url.encode(),
-          b''.join(f'{k}:{v}'.encode() for k, v in sorted(prepared_request.headers.items())),
-          prepared_request.body,
-      ])
-      ```
-    </Accordion>
-  </Step>
-
-  <Step title="Compute the Signature">
-    Generate an HMAC SHA-256 hex digest using your shared secret:
-
-    <Accordion title="Sample code" description="Python" icon="sparkles">
-      ```python
-      import hmac
-      import hashlib
-      
-      signature = hmac.new(
-          key=secret.encode(),
-          msg=message,
-          digestmod=hashlib.sha256,
-      ).hexdigest()
-      ```
-    </Accordion>
-  </Step>
-
-  <Step title="Compare Signatures">
-    Check that the computed signature is equal to the one in the X-Cradl-Signature
-    header to ensures the request was sent by us and not altered in transit.
-  </Step>
-</Steps>
+- Always use HTTPS endpoints.
+- Validate the **Signing Secret** on incoming requests to confirm they came from Cradl AI.
+- Respond quickly — your endpoint should acknowledge receipt with a `2XX` status code within a few seconds.
