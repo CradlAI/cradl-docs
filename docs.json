@@ -66,12 +66,7 @@
           },
           {
             "group": "Endpoints",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create-run",
-              "api-reference/endpoint/delete-run",
-              "api-reference/endpoint/webhook"
-            ]
+            "openapi": "api-reference/openapi.json"
           }
         ]
       }

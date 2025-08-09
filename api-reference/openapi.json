@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Lucidtech API",
+    "title": "Cradl AI API",
     "version": "2025-08-01T14:06:00Z"
   },
   "servers": [
@@ -173,7 +173,8 @@
               "api.lucidtech.ai/models:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -214,7 +215,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -377,7 +379,8 @@
               "api.lucidtech.ai/models:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/actions/{actionId}": {
@@ -532,7 +535,8 @@
               "api.lucidtech.ai/paymentmethods:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -685,7 +689,8 @@
               "api.lucidtech.ai/paymentmethods:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -736,7 +741,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -907,7 +913,8 @@
               "api.lucidtech.ai/paymentmethods:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/actions/{actionId}/runs": {
@@ -1083,7 +1090,8 @@
               "api.lucidtech.ai/users:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -1134,7 +1142,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -1305,7 +1314,8 @@
               "api.lucidtech.ai/users:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/actions/{actionId}/runs/{runId}": {
@@ -1468,7 +1478,8 @@
               "api.lucidtech.ai/documents:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -1527,7 +1538,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -1706,7 +1718,8 @@
               "api.lucidtech.ai/documents:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/agents": {
@@ -1908,7 +1921,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -2430,7 +2444,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -2870,7 +2885,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -3424,7 +3440,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -3764,7 +3781,8 @@
               "api.lucidtech.ai/appclients:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -3805,7 +3823,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -3968,7 +3987,8 @@
               "api.lucidtech.ai/appclients:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/appClients/{appClientId}": {
@@ -4123,7 +4143,8 @@
               "api.lucidtech.ai/appclients:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -4276,7 +4297,8 @@
               "api.lucidtech.ai/appclients:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -4327,7 +4349,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -4498,7 +4521,8 @@
               "api.lucidtech.ai/appclients:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/assets": {
@@ -4659,7 +4683,8 @@
               "api.lucidtech.ai/assets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -4700,7 +4725,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -4863,7 +4889,8 @@
               "api.lucidtech.ai/assets:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/assets/{assetId}": {
@@ -5018,7 +5045,8 @@
               "api.lucidtech.ai/assets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -5171,7 +5199,8 @@
               "api.lucidtech.ai/assets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -5222,7 +5251,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -5393,7 +5423,8 @@
               "api.lucidtech.ai/assets:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/connections": {
@@ -5554,7 +5585,8 @@
               "api.lucidtech.ai/databundles:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -5595,7 +5627,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -5758,7 +5791,8 @@
               "api.lucidtech.ai/databundles:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/connections/{connectionId}": {
@@ -5913,7 +5947,8 @@
               "api.lucidtech.ai/documents:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -6066,7 +6101,8 @@
               "api.lucidtech.ai/documents:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -6117,7 +6153,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -6288,7 +6325,8 @@
               "api.lucidtech.ai/documents:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/datasets": {
@@ -6449,7 +6487,8 @@
               "api.lucidtech.ai/datasets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -6490,7 +6529,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -6653,7 +6693,8 @@
               "api.lucidtech.ai/datasets:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/datasets/{datasetId}": {
@@ -6808,7 +6849,8 @@
               "api.lucidtech.ai/datasets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -6961,7 +7003,8 @@
               "api.lucidtech.ai/datasets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -7012,7 +7055,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -7183,7 +7227,8 @@
               "api.lucidtech.ai/datasets:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/datasets/{datasetId}/transformations": {
@@ -7359,7 +7404,8 @@
               "api.lucidtech.ai/organizations:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -7410,7 +7456,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -7581,7 +7628,8 @@
               "api.lucidtech.ai/organizations:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/datasets/{datasetId}/transformations/{transformationId}": {
@@ -7738,7 +7786,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -7797,7 +7846,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/deploymentEnvironments": {
@@ -7965,7 +8015,8 @@
               "api.lucidtech.ai/secrets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -8006,7 +8057,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/deploymentEnvironments/{deploymentEnvironmentId}": {
@@ -8155,7 +8207,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -8206,7 +8259,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/documents": {
@@ -8616,7 +8670,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -9138,7 +9193,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -9491,7 +9547,8 @@
               "api.lucidtech.ai/documents:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -9532,7 +9589,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -9695,7 +9753,8 @@
               "api.lucidtech.ai/documents:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/functions/{functionId}": {
@@ -9850,7 +9909,8 @@
               "api.lucidtech.ai/appclients:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -10003,7 +10063,8 @@
               "api.lucidtech.ai/appclients:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -10054,7 +10115,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -10225,7 +10287,8 @@
               "api.lucidtech.ai/appclients:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/hooks": {
@@ -10386,7 +10449,8 @@
               "api.lucidtech.ai/workflows:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -10427,7 +10491,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -10590,7 +10655,8 @@
               "api.lucidtech.ai/workflows:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/hooks/{hookId}": {
@@ -10745,7 +10811,8 @@
               "api.lucidtech.ai/models:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -10898,7 +10965,8 @@
               "api.lucidtech.ai/models:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -10949,7 +11017,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -11120,7 +11189,8 @@
               "api.lucidtech.ai/models:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/hooks/{hookId}/runs": {
@@ -11296,7 +11366,8 @@
               "api.lucidtech.ai/paymentmethods:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -11347,7 +11418,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -11518,7 +11590,8 @@
               "api.lucidtech.ai/paymentmethods:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/hooks/{hookId}/runs/{runId}": {
@@ -11681,7 +11754,8 @@
               "api.lucidtech.ai/users:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -11740,7 +11814,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -11919,7 +11994,8 @@
               "api.lucidtech.ai/users:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/logs": {
@@ -12115,7 +12191,8 @@
               "api.lucidtech.ai/logs:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -12156,7 +12233,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/logs/{logId}": {
@@ -12311,7 +12389,8 @@
               "api.lucidtech.ai/logs:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -12362,7 +12441,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/models": {
@@ -12571,7 +12651,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -13100,7 +13181,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -13447,7 +13529,8 @@
               "api.lucidtech.ai/databundles:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -13498,7 +13581,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -13669,7 +13753,8 @@
               "api.lucidtech.ai/databundles:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/models/{modelId}/dataBundles/{dataBundleId}": {
@@ -13832,7 +13917,8 @@
               "api.lucidtech.ai/databundles:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -13993,7 +14079,8 @@
               "api.lucidtech.ai/databundles:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -14052,7 +14139,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -14231,7 +14319,8 @@
               "api.lucidtech.ai/databundles:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/models/{modelId}/trainings": {
@@ -14407,7 +14496,8 @@
               "api.lucidtech.ai/workflows.executions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -14458,7 +14548,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -14629,7 +14720,8 @@
               "api.lucidtech.ai/workflows.executions:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/models/{modelId}/trainings/{trainingId}": {
@@ -14792,7 +14884,8 @@
               "api.lucidtech.ai/databundles:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -14851,7 +14944,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -15030,7 +15124,8 @@
               "api.lucidtech.ai/databundles:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/organizations": {
@@ -15191,7 +15286,8 @@
               "api.lucidtech.ai/organizations:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -15232,7 +15328,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -15395,7 +15492,8 @@
               "api.lucidtech.ai/organizations:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/organizations/{organizationId}": {
@@ -15550,7 +15648,8 @@
               "api.lucidtech.ai/organizations:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -15601,7 +15700,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -15772,7 +15872,8 @@
               "api.lucidtech.ai/organizations:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/paymentMethods": {
@@ -15933,7 +16034,8 @@
               "api.lucidtech.ai/paymentmethods:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -15974,7 +16076,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -16137,7 +16240,8 @@
               "api.lucidtech.ai/paymentmethods:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/paymentMethods/{paymentMethodId}": {
@@ -16292,7 +16396,8 @@
               "api.lucidtech.ai/paymentmethods:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -16445,7 +16550,8 @@
               "api.lucidtech.ai/paymentmethods:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -16496,7 +16602,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -16667,7 +16774,8 @@
               "api.lucidtech.ai/paymentmethods:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/plans": {
@@ -16835,7 +16943,8 @@
               "api.lucidtech.ai/plans:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -16876,7 +16985,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/plans/{planId}": {
@@ -17031,7 +17141,8 @@
               "api.lucidtech.ai/plans:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -17082,7 +17193,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/predictions": {
@@ -17264,7 +17376,8 @@
               "api.lucidtech.ai/predictions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -17305,7 +17418,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -17468,7 +17582,8 @@
               "api.lucidtech.ai/predictions:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/predictions/{predictionId}": {
@@ -17623,7 +17738,8 @@
               "api.lucidtech.ai/predictions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -17674,7 +17790,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/profiles/{profileId}": {
@@ -17829,7 +17946,8 @@
               "api.lucidtech.ai/assets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -17880,7 +17998,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -18033,7 +18152,8 @@
               "api.lucidtech.ai/assets:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/roles": {
@@ -18194,7 +18314,8 @@
               "api.lucidtech.ai/workflows:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -18235,7 +18356,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/roles/{roleId}": {
@@ -18390,7 +18512,8 @@
               "api.lucidtech.ai/models:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -18441,7 +18564,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       }
     },
     "/secrets": {
@@ -18602,7 +18726,8 @@
               "api.lucidtech.ai/secrets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -18643,7 +18768,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -18806,7 +18932,8 @@
               "api.lucidtech.ai/secrets:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/secrets/{secretId}": {
@@ -18955,7 +19082,8 @@
             }
           }
         },
-        "security": []
+        "security": [],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -19006,7 +19134,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -19177,7 +19306,8 @@
               "api.lucidtech.ai/secrets:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/transitions": {
@@ -19345,7 +19475,8 @@
               "api.lucidtech.ai/transitions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -19386,7 +19517,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -19549,7 +19681,8 @@
               "api.lucidtech.ai/transitions:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/transitions/{transitionId}": {
@@ -19704,7 +19837,8 @@
               "api.lucidtech.ai/transitions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -19857,7 +19991,8 @@
               "api.lucidtech.ai/transitions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -19908,7 +20043,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -20079,7 +20215,8 @@
               "api.lucidtech.ai/transitions:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/transitions/{transitionId}/executions": {
@@ -20276,7 +20413,8 @@
               "api.lucidtech.ai/transitions.executions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -20327,7 +20465,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -20498,7 +20637,8 @@
               "api.lucidtech.ai/transitions.executions:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/transitions/{transitionId}/executions/{executionId}": {
@@ -20661,7 +20801,8 @@
               "api.lucidtech.ai/transitions.executions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -20720,7 +20861,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -20899,7 +21041,8 @@
               "api.lucidtech.ai/transitions.executions:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/transitions/{transitionId}/executions/{executionId}/heartbeats": {
@@ -20960,7 +21103,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -21139,7 +21283,8 @@
               "api.lucidtech.ai/transitions.executions.heartbeats:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/users": {
@@ -21300,7 +21445,8 @@
               "api.lucidtech.ai/users:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -21341,7 +21487,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -21504,7 +21651,8 @@
               "api.lucidtech.ai/users:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/users/{userId}": {
@@ -21659,7 +21807,8 @@
               "api.lucidtech.ai/users:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -21812,7 +21961,8 @@
               "api.lucidtech.ai/users:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -21863,7 +22013,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -22034,7 +22185,8 @@
               "api.lucidtech.ai/users:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/validations": {
@@ -22195,7 +22347,8 @@
               "api.lucidtech.ai/paymentmethods:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -22236,7 +22389,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -22399,7 +22553,8 @@
               "api.lucidtech.ai/paymentmethods:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/validations/{validationId}": {
@@ -22554,7 +22709,8 @@
               "api.lucidtech.ai/models:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -22707,7 +22863,8 @@
               "api.lucidtech.ai/models:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -22758,7 +22915,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -22929,7 +23087,8 @@
               "api.lucidtech.ai/models:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/validations/{validationId}/tasks": {
@@ -23105,7 +23264,8 @@
               "api.lucidtech.ai/documents:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -23156,7 +23316,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -23327,7 +23488,8 @@
               "api.lucidtech.ai/documents:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/validations/{validationId}/tasks/{taskId}": {
@@ -23490,7 +23652,8 @@
               "api.lucidtech.ai/secrets:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -23549,7 +23712,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -23728,7 +23892,8 @@
               "api.lucidtech.ai/secrets:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/workflows": {
@@ -23889,7 +24054,8 @@
               "api.lucidtech.ai/workflows:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "requestBody": {
@@ -23930,7 +24096,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -24093,7 +24260,8 @@
               "api.lucidtech.ai/workflows:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/workflows/{workflowId}": {
@@ -24248,7 +24416,8 @@
               "api.lucidtech.ai/workflows:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -24401,7 +24570,8 @@
               "api.lucidtech.ai/workflows:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -24452,7 +24622,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -24623,7 +24794,8 @@
               "api.lucidtech.ai/workflows:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/workflows/{workflowId}/executions": {
@@ -24827,7 +24999,8 @@
               "api.lucidtech.ai/workflows.executions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -24878,7 +25051,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "post": {
         "parameters": [
@@ -25049,7 +25223,8 @@
               "api.lucidtech.ai/workflows.executions:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     },
     "/workflows/{workflowId}/executions/{executionId}": {
@@ -25212,7 +25387,8 @@
               "api.lucidtech.ai/workflows.executions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "get": {
         "parameters": [
@@ -25373,7 +25549,8 @@
               "api.lucidtech.ai/workflows.executions:read"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       },
       "options": {
         "parameters": [
@@ -25432,7 +25609,8 @@
               }
             }
           }
-        }
+        },
+        "x-hidden": true
       },
       "patch": {
         "parameters": [
@@ -25611,7 +25789,8 @@
               "api.lucidtech.ai/workflows.executions:write"
             ]
           }
-        ]
+        ],
+        "x-hidden": true
       }
     }
   },
@@ -28472,7 +28651,7 @@
                 "fieldConfig": {
                   "type": "object",
                   "additionalProperties": false,
-                  "patternProperties": {
+                  "x-patternProperties": {
                     "^[0-9A-Za-z-_]{1,36}$": {
                       "oneOf": [
                         {
@@ -28513,9 +28692,6 @@
                                 {
                                   "type": "string",
                                   "maxLength": 4096
-                                },
-                                {
-                                  "type": "null"
                                 }
                               ]
                             },
@@ -28524,9 +28700,6 @@
                                 {
                                   "type": "string",
                                   "maxLength": 4096
-                                },
-                                {
-                                  "type": "null"
                                 }
                               ]
                             },
@@ -28541,9 +28714,6 @@
                                 {
                                   "type": "string",
                                   "maxLength": 4096
-                                },
-                                {
-                                  "type": "null"
                                 }
                               ]
                             },
@@ -28568,7 +28738,7 @@
                             "fields": {
                               "type": "object",
                               "additionalProperties": false,
-                              "patternProperties": {
+                              "x-patternProperties": {
                                 "^[0-9A-Za-z-_]{1,36}$": {
                                   "type": "object",
                                   "properties": {
@@ -28607,9 +28777,6 @@
                                         {
                                           "type": "string",
                                           "maxLength": 4096
-                                        },
-                                        {
-                                          "type": "null"
                                         }
                                       ]
                                     },
@@ -28618,9 +28785,6 @@
                                         {
                                           "type": "string",
                                           "maxLength": 4096
-                                        },
-                                        {
-                                          "type": "null"
                                         }
                                       ]
                                     },
@@ -28635,9 +28799,6 @@
                                         {
                                           "type": "string",
                                           "maxLength": 4096
-                                        },
-                                        {
-                                          "type": "null"
                                         }
                                       ]
                                     },
@@ -29998,7 +30159,7 @@
           "fieldConfig": {
             "type": "object",
             "additionalProperties": false,
-            "patternProperties": {
+            "x-patternProperties": {
               "^[0-9A-Za-z-_]{1,36}$": {
                 "oneOf": [
                   {
@@ -30039,9 +30200,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -30050,9 +30208,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -30067,9 +30222,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -30094,7 +30246,7 @@
                       "fields": {
                         "type": "object",
                         "additionalProperties": false,
-                        "patternProperties": {
+                        "x-patternProperties": {
                           "^[0-9A-Za-z-_]{1,36}$": {
                             "type": "object",
                             "properties": {
@@ -30133,9 +30285,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -30144,9 +30293,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -30161,9 +30307,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -31402,7 +31545,7 @@
           "fieldConfig": {
             "type": "object",
             "additionalProperties": false,
-            "patternProperties": {
+            "x-patternProperties": {
               "^[0-9A-Za-z-_]{1,36}$": {
                 "oneOf": [
                   {
@@ -31443,9 +31586,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -31454,9 +31594,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -31471,9 +31608,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -31498,7 +31632,7 @@
                       "fields": {
                         "type": "object",
                         "additionalProperties": false,
-                        "patternProperties": {
+                        "x-patternProperties": {
                           "^[0-9A-Za-z-_]{1,36}$": {
                             "type": "object",
                             "properties": {
@@ -31537,9 +31671,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -31548,9 +31679,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -31565,9 +31693,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -32182,7 +32307,7 @@
           "fieldConfig": {
             "type": "object",
             "additionalProperties": false,
-            "patternProperties": {
+            "x-patternProperties": {
               "^[0-9A-Za-z-_]{1,36}$": {
                 "oneOf": [
                   {
@@ -32223,9 +32348,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -32234,9 +32356,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -32251,9 +32370,6 @@
                           {
                             "type": "string",
                             "maxLength": 4096
-                          },
-                          {
-                            "type": "null"
                           }
                         ]
                       },
@@ -32278,7 +32394,7 @@
                       "fields": {
                         "type": "object",
                         "additionalProperties": false,
-                        "patternProperties": {
+                        "x-patternProperties": {
                           "^[0-9A-Za-z-_]{1,36}$": {
                             "type": "object",
                             "properties": {
@@ -32317,9 +32433,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -32328,9 +32441,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -32345,9 +32455,6 @@
                                   {
                                     "type": "string",
                                     "maxLength": 4096
-                                  },
-                                  {
-                                    "type": "null"
                                   }
                                 ]
                               },
@@ -36563,9 +36670,6 @@
                       "maxLength": 1024
                     },
                     {
-                      "type": "null"
-                    },
-                    {
                       "type": "boolean"
                     },
                     {
@@ -36579,9 +36683,6 @@
                       "type": "string",
                       "minLength": 0,
                       "maxLength": 1024
-                    },
-                    {
-                      "type": "null"
                     },
                     {
                       "type": "boolean"
@@ -36635,9 +36736,6 @@
                         "maxLength": 1024
                       },
                       {
-                        "type": "null"
-                      },
-                      {
                         "type": "boolean"
                       },
                       {
@@ -36651,9 +36749,6 @@
                         "type": "string",
                         "minLength": 0,
                         "maxLength": 1024
-                      },
-                      {
-                        "type": "null"
                       },
                       {
                         "type": "boolean"
