@@ -23,7 +23,7 @@ To authenticate with Cradl’s API, use the `Authorization` header with a **Bear
 ```bash
 curl -X POST https://auth.cradl.ai/oauth2/token \
   --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'grant_type=client_credentials&audience=https://api.cradl.ai&client_id=<YOUR CLIENT ID>&client_secret=<YOUR SECRET>'
+  --data 'grant_type=client_credentials&audience=https://api.cradl.ai/v1&client_id=<YOUR CLIENT ID>&client_secret=<YOUR SECRET>'
 ```
 
 The response will include an access token:
