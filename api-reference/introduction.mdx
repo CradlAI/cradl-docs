@@ -47,7 +47,7 @@ Authorization: Bearer <YOUR-ACCESS-TOKEN>
 
 <Steps>
   <Step title="Find your agent">
-    You can find your agent ID in the Cradl AI UI. Alternatively, you can list your agents using the API:
+    You can find your agent ID in the Cradl AI UI. It will always be on the form `cradl:agent:xxx'. Alternatively, you can list your agents using the API:
 
     ```bash
     curl -X GET https://api.lucidtech.ai/v1/agents \
@@ -60,7 +60,7 @@ Authorization: Bearer <YOUR-ACCESS-TOKEN>
     {
       "agents": [
         {
-          "agentId": "cradl:agent:<YOUR-AGENT-ID>",
+          "agentId": "<YOUR-AGENT-ID>",
           ...
         }
       ],
@@ -69,7 +69,7 @@ Authorization: Bearer <YOUR-ACCESS-TOKEN>
     ```
   </Step>
   <Step title="Create a new run">
-    Once you have the agent ID, create a run:
+    Once you have the agent ID on the form `cradl:agent:xxx', create a run:
 
     ```bash
     curl -X POST https://api.lucidtech.ai/v1/agents/<YOUR-AGENT-ID>/runs \
@@ -82,7 +82,7 @@ Authorization: Bearer <YOUR-ACCESS-TOKEN>
 
     ```json
     {
-      "id": "cradl:organization:<YOUR-ORG-ID>/cradl:agent:<YOUR-AGENT-ID>/cradl:run:<YOUR-RUN-ID>",
+      "id": "<YOUR-ORG-ID>/<YOUR-AGENT-ID>/<YOUR-RUN-ID>",
       ...
     }
     ```
@@ -96,15 +96,15 @@ Authorization: Bearer <YOUR-ACCESS-TOKEN>
       -H "Content-Type: application/json" \
       -d '{
         "name": "My invoice",
-        "agentRunId": "cradl:organization:<YOUR-ORG-ID>/cradl:agent:<YOUR-AGENT-ID>/cradl:run:<YOUR-RUN-ID>"
+        "agentRunId": "<YOUR-ORG-ID>/<YOUR-AGENT-ID>/<YOUR-RUN-ID>"
       }'
     ```
 
-    This response includes a `fileUrl` that you’ll use to upload your document file:
+    This response includes a `fileUrl` on the form https://files.api.cradl.ai/las:file:xxx that you’ll use to upload your document file:
 
     ```bash
     curl -X PUT --data-binary @test.jpeg \
-      https://files.api.cradl.ai/cradl:file:<YOUR-DOCUMENT-ID> \
+      https://files.api.cradl.ai/<YOUR-FILE-ID> \
       -H "Authorization: Bearer <YOUR-ACCESS-TOKEN>" \
       -H "Content-Type: image/jpeg"
     ```
