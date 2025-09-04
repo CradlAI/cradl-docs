@@ -1,9 +1,56 @@
 ---
 title: "Zapier"
 icon: "/icons/zapier.svg"
-description: "Connect a Cradl AI agent to a Zap in Zapier."
+description: "Export processed documents from your agent to Zapier."
 ---
 
-<Info>
-  **Note:** A native Zapier integration is coming soon\! In the meantime, you can connect Cradl AI to Zapier using **webhooks**.
-</Info>
+### Prerequisites
+
+Before you begin, make sure you have:
+
+- An **active Zapier account**.
+- A **Cradl AI account** with an **Agent** configured to export to Zapier.
+- At least one **document ready for export** to test your integration.
+
+### Step 1: Connect to Zapier
+
+1. In the Workflow section in Cradl AI, open the **Export to Zapier** action panel.
+2. Click **Connect**. This opens Zapier and pre-configures a new Zap with Cradl AI as the trigger.
+3. In the **Select an account** field, connect your Cradl AI account.
+   - Enter your **Client ID** and **Client Secret** (available in the Cradl AI **Integration panel**).
+4. Zapier will auto-fill the **Agent** and **Action** values in the configuration step.
+5. Go to the **Test** tab and click **Test your trigger**.
+   1.  Zapier will fetch recent document runs from your Cradl account.
+   2. Select one and click **Continue with selected record**.
+6. You will now be prompted to set up the next step in your Zap.
+
+### Step 2: Add a new step in Zapier
+
+Now that Zapier has access to your parsed data, you can map fields into another app.
+
+For example, to export invoices into Google Sheets:
+
+- **App:** Google Sheets
+- **Action:** Create Spreadsheet Row (or Create Multiple Spreadsheet Rows)
+- **Mapping:** Map fields like `Invoice Number`, `Date`, and `Total Amount` into pre-existing columns.
+
+### Step 3: Test and publish your Zap
+
+1. Run a test from Step 2 and confirm that parsed data appears correctly in your chosen destination app.
+2. Click **Publish Zap**.
+
+From now on, every time Cradl AI processes a document, Zapier will automatically send the structured data to your connected app.
+
+### Example workflow
+
+- You upload a **PDF invoice** to Cradl AI.
+- Cradl extracts the `Invoice Number`, `Vendor`, `Total Amount`, and `Due Date`.
+- Zapier receives the parsed data.
+- The Zap automatically adds a new row to **Google Sheets** with those fields, and posts a message in **Slack** notifying your team.
+
+### Troubleshooting
+
+- **No data appearing in Zapier?** Ensure your Cradl AI Agent has finished processing the document before the trigger runs.
+- **Fields missing?** Re-test the trigger in Zapier with a fresh document to refresh available fields.
+
+---
