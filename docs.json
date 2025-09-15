@@ -53,9 +53,10 @@
               "integrations/onedrive"
             ]
           },
+        ],
+        "dropdowns": [
           {
-            "group": "Legal and Compliance",
-            "icon": "compliance",
+            "dropdown": "Legal and Compliance",
             "pages": [
                 "legal/dos",
                 "legal/dpa",
