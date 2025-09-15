@@ -52,6 +52,18 @@
               "integrations/googledrive",
               "integrations/onedrive"
             ]
+          },
+          {
+            "group": "Legal and Compliance",
+            "icon": "compliance",
+            "pages": [
+                "legal/dos",
+                "legal/dpa",
+                "legal/eula",
+                "legal/privacy-policy",
+                "legal/sla",
+                "legal/tos"
+            ]
           }
         ]
       },
