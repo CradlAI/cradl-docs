@@ -52,11 +52,10 @@
               "integrations/googledrive",
               "integrations/onedrive"
             ]
-          }
-        ],
-        "menu": [
+          },
           {
-            "item": "Legal and Compliance",
+            "group": "Legal and Compliance",
+            "expanded": false,
             "pages": [
                 "legal/dos",
                 "legal/dpa",
