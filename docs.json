@@ -57,12 +57,12 @@
             "group": "Legal and Compliance",
             "icon": "compliance",
             "pages": [
-                "legal/dos.mdx",
-                "legal/dpa.mdx",
-                "legal/eula.mdx",
-                "legal/privacy-policy.mdx",
-                "legal/sla.mdx",
-                "legal/tos.mdx"
+                "legal/dos",
+                "legal/dpa",
+                "legal/eula",
+                "legal/privacy-policy",
+                "legal/sla",
+                "legal/tos"
             ]
           }
         ]
