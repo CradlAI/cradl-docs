@@ -5,5 +5,112 @@ description: "Connect a Cradl AI agent to a workflow in n8n."
 ---
 
 <Info>
-  **Note:** A native n8n integration is coming soon\! In the meantime, you can connect Cradl AI to n8n using **webhooks**.
+  **Note:** A native n8n integration is coming soon! In the meantime, you can connect Cradl AI to n8n using **webhooks**.
 </Info>
+
+### Downloading Files from a Cradl Webhook in n8n
+
+When setting up a webhook export in Cradl, the webhook event does **not** include the PDF/image file itself. Instead, you’ll need a few extra steps in n8n to fetch the actual document. We want to end up with a workflow like this:
+
+<img
+  src="/images/image.png"
+  alt="Step 1"
+  height="300"
+  className="rounded-lg"
+/>
+
+#### 1. Configure the Webhook Node
+
+Add a **Webhook** node and set it to listen for **POST** requests.\
+Copy the provided **Test URL** and paste it into the **Webhook export URL** field in Cradl.
+
+#### 2. Authenticate with Cradl
+
+Next, you need an authentication token. Add an **HTTP Request** node with the following settings:
+
+| Setting               | Value                                |
+| :-------------------- | :----------------------------------- |
+| **Method**            | POST                                 |
+| **URL**               | `https://auth.cradl.ai/oauth2/token` |
+| **Send Body**         | ✅ (checked)                          |
+| **Body Content Type** | Form Urlencoded                      |
+| **Body Parameters**   | See table below                      |
+
+**Body Parameters**
+
+| Name          | Value                     |
+| :------------ | :------------------------ |
+| client_id     | `your client id here`     |
+| client_secret | `your client secret here` |
+| grant_type    | `client_credentials`      |
+| audience      | `https://api.cradl.ai`    |
+
+You can find the `client_id` and `client_secret` in your Cradl workspace at https://rc.app.cradl.ai/settings/workspace
+
+Leave everything else as default.\
+_(See illustration below)_
+
+<img
+  src="/images/image_2025-09-18_163456332.png"
+  alt="Step 2"
+  height="300"
+  className="rounded-lg"
+/>
+
+#### 3. Retrieve the File URL
+
+Now, fetch the document metadata to get the file URL. Use the `documentId` acquired from the `Webhook` node and the `access_token` from the previous node. Add another **HTTP Request** node:
+
+| Setting               | Value                                                                                        |
+| :-------------------- | :------------------------------------------------------------------------------------------- |
+| **Method**            | GET                                                                                          |
+| **URL**               | `https://api.lucidtech.ai/v1/documents/{{ $('Webhook').item.json.body.context.documentId }}` |
+| **Send Headers**      | ✅ (checked)                                                                                  |
+| **Header Parameters** | See table below                                                                              |
+
+**Header Parameters**
+
+| Name          | Value (Expression)                                      |
+| :------------ | :------------------------------------------------------ |
+| Authorization | `Bearer {{ $('HTTP Request').item.json.access_token }}` |
+
+Leave everything else as default.\
+_(See illustration below)_
+
+<img
+  src="/images/image_2025-09-18_162113231.png"
+  alt="Step 3"
+  height="300"
+  className="rounded-lg"
+/>
+
+#### 4. Download the File
+
+With the `fileUrl` acquired from the previous node and the same `access_token` used in the previous node, add one more **HTTP Request** node to download it:
+
+| Setting               | Value                 |
+| :-------------------- | :-------------------- |
+| **Method**            | GET                   |
+| **URL**               | `{{ $json.fileUrl }}` |
+| **Send Headers**      | ✅ (checked)           |
+| **Header Parameters** | See table below       |
+
+**Header Parameters**
+
+| Name          | Value (Expression)                                      |
+| :------------ | :------------------------------------------------------ |
+| Authorization | `Bearer {{ $('HTTP Request').item.json.access_token }}` |
+
+Leave everything else as default.\
+_(See illustration below)_
+
+<img
+  src="/images/image_2025-09-18_164117284.png"
+  alt="Step 4"
+  height="300"
+  className="rounded-lg"
+/>
+
+#### 5. Done!
+
+The file is now available in your workflow.
