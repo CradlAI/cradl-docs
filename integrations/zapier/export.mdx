@@ -4,8 +4,10 @@ icon: "/icons/export.svg"
 description: "Exporting data from your Cradl AI agent to Zapier."
 ---
 
+import { Image, Row } from '/snippets/utils.jsx';
+
 #### Introduction
-In this guide, we’ll go through the steps required to export data from a Cradl AI agent to Zapier. From here, you can, for example, route the extracted data into thousands of apps supported by Zapier.
+This guide walks you through exporting data from a Cradl AI agent to Zapier. From there, you can route the extracted data to thousands of apps supported by Zapier.
 
 #### Before you begin
 
@@ -14,28 +16,40 @@ In this guide, we’ll go through the steps required to export data from a Cradl
 - A sample document to test the export.
 
 #### Setting up your Zap
-In the following steps, we’ll enable the export in Cradl AI, create a Zap with Cradl AI as the trigger, connect your account, and finish configuration.
+The steps below enable the export in Cradl AI, create a Zap with Cradl AI as the trigger, connect your account, and complete the configuration.
 
 <Steps>
   <Step title="Add a Zapier export">
-    In Cradl AI, open your agent and add a new export. Choose **Zapier** from the list of integrations. Copy the **Client ID** and **Client Secret** from the Zapier integration panel.
+    In Cradl AI, open your agent and add a new export. Select **Zapier** from the list of integrations, then copy the **Client ID** and **Client Secret** from the Zapier integration panel.
+    
+    <Image src="/images/zapier-export.png" alt="Copy Client ID and Client Secret from the Cradl AI integration panel" />
   </Step>
 
   <Step title="Connect your Cradl AI account in Zapier">
-    Click **Connect**. This opens Zapier and pre-configures a new Zap with Cradl AI as the trigger. Click **Select an account**.
-    and paste in the **Client ID** and **Client Secret** you copied from Step 1. Then click **Continue**.
+    Click **Connect**. This opens Zapier and pre-configures a new Zap with Cradl AI as the trigger. Click **Select an account**,
+    then paste the **Client ID** and **Client Secret** you copied in Step 1. Click **Continue**, choose the Cradl AI
+    **Agent** and **Action** you want to receive results from, then click **Continue**.
+
+    <Row>
+      <Image src="/images/zapier-export-configure.png" alt="Setting up a Cradl AI trigger in Zapier" size="small" />
+      <Image src="/images/zapier-export-configure-step.png" alt="Setting up a Cradl AI trigger in Zapier" size="small" />
+    </Row>
   </Step>
 
   <Step title="Test the Cradl AI trigger">
-    If you haven't done so already, upload and validate a document in your Cradl AI agent to ensure there is data available. From Zapier, click **Test your trigger**. Zapier will fetch recent document runs from your Cradl AI account. Select one and continue.
+    If you haven't done so already, upload and validate a document in your Cradl AI agent to ensure data is available. In Zapier, click **Test your trigger**. Zapier will fetch recent document runs from your Cradl AI account. Select one and continue.
   </Step>
 
   <Step title="Add an action step">
-    Choose a destination app (for example, **Google Sheets** or **Slack**) and map extracted fields such as `Invoice Number`, `Date`, and `Total Amount` to the target fields.
+    Choose the destination app you want to export data to. In this example, we'll use *Google Sheets*. Map the extracted fields, such as `Total Amount` and `Supplier Name`, to the target fields.
+    
+    <Image src="/images/zapier-export-sheets.png" />
   </Step>
 
   <Step title="Publish the Zap">
-    Run a test to verify the mapped fields appear correctly, then click **Publish** to activate your Zap. If you navigate back to Cradl AI and refresh the page, you should see that the Zapier export is successfully configured.
+    When you're ready, click **Publish** to activate your Zap. Back in Cradl AI, refresh the page; you should see that the Zapier export is configured successfully.
+    
+    <Warning>Your Zap must be published for documents to be processed by your Zap, even during testing and experimentation.</Warning>
   </Step>
 </Steps>
 
@@ -44,7 +58,6 @@ Your Zap now receives extracted data from your Cradl AI agent whenever the expor
 
 ## Troubleshooting
 
-- **No data appearing in Zapier?** Ensure your Cradl AI agent has finished processing the document before the Zap’s trigger runs.
-- **Fields missing?** Re-test the Cradl AI trigger in Zapier with a fresh document to refresh available fields.
-- **Connection issues?** Reconnect the Cradl AI account in Zapier using current **Client ID/Client Secret** from the **Workflow → Import from Zapier** panel.
-
+- **No data appearing in Zapier.** Ensure your Cradl AI agent has finished processing the document before the Zap’s trigger runs.
+- **Missing fields.** Retest the Cradl AI trigger in Zapier with a fresh document to refresh available fields.
+- **Connection issues.** Reconnect your Cradl AI account in Zapier using the current **Client ID/Client Secret** from the **Workflow → Import from Zapier** panel.
