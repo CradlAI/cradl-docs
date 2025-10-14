@@ -4,6 +4,8 @@ icon: "/icons/trigger.svg"
 description: "Triggering your Cradl AI agent from Zapier."
 ---
 
+import { Image, Row } from '/snippets/utils.jsx';
+
 #### Introduction
 In this guide, we’ll walk through sending a document from Zapier to your Cradl AI agent for extraction. From there, you can pass the results to other actions in your Zap.
 
@@ -20,26 +22,19 @@ In the following steps, we’ll create a Zap, add the Cradl AI action, and map t
   <Step title="Add a Zapier trigger">
     In Cradl AI, open your agent and add a new trigger. Choose **Zapier** from the list of integrations. Copy the **Client ID** and **Client Secret** from the Zapier integration panel.
     
-    <img
+    <Image
       src="/images/zapier-config-panel.png"
       alt="Copy Client ID and Client Secret from the Cradl AI integration panel"
-      style={{ width:"75%" }}
-    />
+      />
   </Step>
 
   <Step title="Add the Extract Data From Document action to your Zap">
     Add a new action step in your Zap and select **Cradl AI** as the app. For **Action Event**, choose **Extract Data From Document**.
-    <img
-      src="/images/zapier-select-cradl.png"
-      alt="Configure the Cradl AI action in Zapier"
-      style={{ width:"45%", display: 'inline-block' }}
-      />
-      
-    <img
-      src="/images/zapier-setup-step.png"
-      alt="Select the Cradl AI app in Zapier"
-      style={{ width:"45%", display: 'inline-block', marginLeft: '20px' }}
-      />
+
+    <Row>
+      <Image src="/images/zapier-select-cradl.png" alt="Add a new action step in Zapier" size="small" />
+      <Image src="/images/zapier-setup-step.png" alt="Add a new action step in Zapier" size="small" />
+    </Row>
 
     Under **Account**, click **Connect a new account** and paste the **Client ID** and **Client Secret** you copied in Step 1, then click **Continue**.
   </Step>
@@ -47,11 +42,7 @@ In the following steps, we’ll create a Zap, add the Cradl AI action, and map t
   <Step title="Configure the action">
     Choose the Cradl AI **Agent** that should process the file. For **Document** (or **File**), select the file from your trigger step. Optionally set **Filename** to pass the original file name to your agent.
 
-    <img
-      src="/images/zapier-config.png"
-      alt="Configure the Cradl AI action in Zapier"
-      style={{ width:"75%" }}
-    />
+    <Image src="/images/zapier-config.png" alt="Configure the Cradl AI action in Zapier" />
     
     <Tip>**Pro tip**: If you need to pass additional values to your agent, add them as *Variables*. They will be visible to other actions in your agent.</Tip>
   </Step>

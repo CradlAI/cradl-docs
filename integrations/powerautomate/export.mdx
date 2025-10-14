@@ -3,6 +3,9 @@ title: "Export"
 icon: "/icons/export.svg"
 description: "Exporting data from your Cradl AI agent to a Power Automate flow."
 ---
+
+import { Image, Row } from '/snippets/utils.jsx';
+
 #### Introduction
 In this guide, we’ll go through the steps required to export data from a Cradl AI agent to a Power Automate flow. From here, you can, for example, route the extracted data to any destination supported by Power Automate.
 
@@ -19,42 +22,39 @@ In the following steps, we’ll enable export in Cradl AI, add the trigger in Po
     In Cradl AI, open your agent and add a new export. Choose **Power Automate** from the list of integrations. Click the _Export to Power Automate_ action to set up the export.
     Copy the **Client Credentials** value from the configuration panel.
 
-    <img
+    <Image
       src="/images/download.png"
       alt="Copy client credentials for the Power Automate export in Cradl AI"
-      style={{ width:"75%" }}
-    />
+      />
   </Step>
 
   <Step title="Add the Extracted Data From Document trigger">
     In Power Automate, click **New flow** and select **Automated cloud flow**. In the trigger search box, type "Cradl" and select the **Extracted Data From Document** trigger from the Cradl AI connector.
 
-    <img
+    <Image
       src="/images/Screenshotfrom2025-10-0815-43-52.png"
       alt="Create a new Power Automate automated flow and search for Cradl AI trigger"
-      style={{ width:"75%" }}
-    />
+      />
   </Step>
 
   <Step title="Create a connection from Power Automate to Cradl AI">
     If prompted, create a new Cradl AI connection by pasting the _Client Credentials_ you copied in Step 1. If you already have an existing connection, you can reuse it.
 
-    <img
+    <Image
       src="/images/Screenshotfrom2025-10-0815-46-33.png"
       alt="Pasting client credentials to create the Cradl AI connection"
-      style={{ width:"75%" }}
-    />
+      />
   </Step>
 
   <Step title="Select your agent">
     Ensure that the *Extracted Data From Document* trigger is open. In the *Export Action* field, select the Cradl AI agent you configured in Step 1.
 
-    <img
+    <Image
       src="/images/Screenshotfrom2025-10-0815-53-33.png"
       alt="Configure the Extracted Data From Document trigger in Power Automate"
-      style={{ width:"75%" }}
-    />
+      />
   </Step>
+
   <Step title="Save your Power Automate flow">
     This automatically configures your Cradl AI agent to send data to this Power Automate flow when the export action runs. In Cradl AI, open your agent and refresh the page. You should now see that the URL parameter is configured on your Power Automate export.
   </Step>

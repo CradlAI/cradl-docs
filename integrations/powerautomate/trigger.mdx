@@ -4,6 +4,8 @@ icon: "/icons/trigger.svg"
 description: "Triggering your Cradl AI agent from Power Automate."
 ---
 
+import { Image, Row } from '/snippets/utils.jsx';
+
 #### Introduction
 In this guide, we’ll go through the steps required to send a document from Power Automate to your Cradl AI agent for extraction.
 
@@ -18,39 +20,35 @@ In the following steps we’ll configure the flow in Power Automate by adding th
 <Steps>
   <Step title="Add a Power Automate trigger">
     In Cradl AI, open your agent and add a new trigger. Choose **Power Automate** from the list of integrations. Click the **Import from Power Automate** trigger and copy the **Client Credentials** value from the configuration panel.
-    <img
+    <Image
       src="/images/download.png"
       alt="Copy client credentials from the Cradl AI Integration panel"
-      style={{ width:"75%" }}
     />
   </Step>
 
   <Step title="Add the Extract Data From Document action">
     In your Power Automate flow, add the **Extract Data From Document** action.
 
-    <img
+    <Image
       src="/images/Screenshotfrom2025-10-0815-49-57.png"
       alt="Adding the Extract data from document action in Power Automate"
-      style={{ width:"75%" }}
     />
   </Step>
   <Step title="Create a connection to Cradl AI">
     In the **Client Credentials** field, paste the value you copied in Step 1.
 
-    <img
+    <Image
       src="/images/Screenshotfrom2025-10-0815-46-33.png"
       alt="Pasting client credentials to create the Cradl AI connection"
-      style={{ width:"75%" }}
     />
   </Step>
   <Step title="Configure the action">
     Click the **Extract Data From Document** action to open its settings. Choose the Cradl AI **Agent** that should process the file. For **Document**, select the binary file content from an earlier step—for example, the `File Content` output from **Get file content (OneDrive)** or the file supplied by a manual trigger. Optionally set **Filename** so the agent receives the original name and extension.
 
-    <img
+    <Image
       src="/images/Screenshotfrom2025-10-0815-53-33.png"
       alt="Configuring the Extract data from document action with Agent and Document inputs"
       title="Configure Extract data from document"
-      style={{ width:"75%" }}
     />
   </Step>
 </Steps>
