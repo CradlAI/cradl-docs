@@ -44,7 +44,14 @@
               "integrations/email",
               "integrations/webhook",
               "integrations/excel",
-              "integrations/powerautomate",
+              {
+                "group": "Power Automate",
+                "icon": "https://mintlify.s3.us-west-1.amazonaws.com/cradl-c8140fcc/icons/powerautomate.svg",
+                "pages": [
+                  "integrations/powerautomate/trigger",
+                  "integrations/powerautomate/export"
+                ]
+              },
               "integrations/zapier",
               "integrations/make",
               "integrations/n8n",
