@@ -52,7 +52,14 @@
                   "integrations/powerautomate/export"
                 ]
               },
-              "integrations/zapier",
+              {
+                "group": "Zapier",
+                "icon": "https://mintlify.s3.us-west-1.amazonaws.com/cradl-c8140fcc/icons/zapier.svg",
+                "pages": [
+                  "integrations/zapier/trigger",
+                  "integrations/zapier/export"
+                ]
+              },
               "integrations/make",
               "integrations/n8n",
               "integrations/googlesheets",
