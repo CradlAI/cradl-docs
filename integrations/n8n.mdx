@@ -2,115 +2,122 @@
 title: "n8n"
 icon: "/icons/n8n.svg"
 description: "Connect a Cradl AI agent to a workflow in n8n."
+sidebarTitle: "n8n"
 ---
+import { Image } from '/snippets/utils.jsx';
+
+## Introduction
+Use Cradl AI’s Webhook export to send extracted data to an n8n workflow. You can also fetch and download the original file inside n8n.
 
 <Info>
-  **Note:** A native n8n integration is coming soon! In the meantime, you can connect Cradl AI to n8n using **webhooks**.
+  A native n8n integration is coming soon. Until then, connect via **Webhook**.
 </Info>
 
-### Downloading Files from a Cradl Webhook in n8n
+## Before you begin
+- An n8n instance (Cloud or self‑hosted) with permission to create workflows
+- A Cradl AI agent with at least one test document
+- API client credentials (`client_id`, `client_secret`) from your workspace settings (rc.app.cradl.ai/settings/workspace)
 
-When setting up a webhook export in Cradl, the webhook event does **not** include the PDF/image file itself. Instead, you’ll need a few extra steps in n8n to fetch the actual document. We want to end up with a workflow like this:
+## Connect Cradl AI to n8n
+Create an n8n Webhook and point your agent’s Webhook export to it.
 
-<img
-  src="/images/OperaSnapshot_2025-09-18_170227_cradlai.app.n8n.cloud.png"
-  alt="Overview"
-  height="300"
-  className="rounded-lg"
-/>
+<Steps>
+  <Step title="Add a Webhook node in n8n">
+    In n8n, add a **Webhook** node and set **HTTP Method** to **POST**. Copy the **Test URL** (you’ll paste it into Cradl AI).
 
-#### 1. Configure the Webhook Node
+    <Image src="/images/OperaSnapshot_2025-09-18_170227_cradlai.app.n8n.cloud.png" alt="n8n Webhook node overview" />
+  </Step>
 
-Add a **Webhook** node and set it to listen for **POST** requests.\
-Copy the provided **Test URL** and paste it into the **Webhook export URL** field in Cradl.
+  <Step title="Add a Webhook export in Cradl AI">
+    In your agent, add a new export and choose **Webhook**. Paste the n8n **Test URL** into **URL** and set **HTTP Method** to **POST**. Click **Test webhook** and verify that the n8n Webhook node receives a request (2xx).
 
-#### 2. Authenticate with Cradl
+    <Info>When you go live, switch the n8n Webhook to use its <strong>Production URL</strong> and update the export URL in Cradl AI.</Info>
+  </Step>
+</Steps>
 
-Next, you need an authentication token. Add an **HTTP Request** node with the following settings:
+## Payload format
+The Webhook body includes extracted fields and context such as `context.documentId`. See the [Webhook → Payload format](./webhook) for a full example.
 
-| Setting               | Value                                |
-| :-------------------- | :----------------------------------- |
-| **Method**            | POST                                 |
-| **URL**               | `https://auth.cradl.ai/oauth2/token` |
-| **Send Body**         | ✅ (checked)                          |
-| **Body Content Type** | Form Urlencoded                      |
-| **Body Parameters**   | See table below                      |
+## Download the file in n8n (optional)
+Webhook payloads don’t include the original file. The steps below show how to get an access token, fetch the document metadata to obtain `fileUrl`, and then download the file.
 
-**Body Parameters**
+<Steps>
+  <Step title="Get an access token">
+    Add an **HTTP Request** node with **Parameters** and **Body Parameters** as shown below.
 
-| Name          | Value                     |
-| :------------ | :------------------------ |
-| client_id     | `your client id here`     |
-| client_secret | `your client secret here` |
-| grant_type    | `client_credentials`      |
-| audience      | `https://api.cradl.ai/v1` |
+    <Accordion title="Parameters">
+    | Parameter             | Value                                |
+    | :-------------------- | :----------------------------------- |
+    | **Method**            | POST                                 |
+    | **URL**               | `https://auth.cradl.ai/oauth2/token` |
+    | **Send Body**         | ✅ (checked)                         |
+    | **Body Content Type** | Form Urlencoded                      |
+    | **Body Parameters**   | See table below                      |
+    </Accordion>
+    
+    <Accordion title="Body Parameters">
+    | Parameter     | Value                     |
+    | :------------ | :------------------------ |
+    | client_id     | `your client id here`     |
+    | client_secret | `your client secret here` |
+    | grant_type    | `client_credentials`      |
+    | audience      | `https://api.cradl.ai/v1` |
+    </Accordion>
 
-You can find the `client_id` and `client_secret` in your Cradl workspace at https://rc.app.cradl.ai/settings/workspace
+    <Image src="/images/image_2025-09-18_163456332.png" alt="Create token request in n8n" />
 
-Leave everything else as default.\
-_(See illustration below)_
+    Save `access_token` from the response.
+  </Step>
 
-<img
-  src="/images/image_2025-09-18_163456332.png"
-  alt="Step 2"
-  height="300"
-  className="rounded-lg"
-/>
+  <Step title="Fetch document metadata (get fileUrl)">
+    Add another **HTTP Request** node with the parameters below. The response includes `fileUrl`.
 
-#### 3. Retrieve the File URL
+    <Accordion title="Parameters">
+    | Parameter        | Value                                                                                        |
+    | :--------------- | :------------------------------------------------------------------------------------------- |
+    | **Method**       | GET                                                                                          |
+    | **URL**          | `https://api.lucidtech.ai/v1/documents/{{ $('Webhook').item.json.body.context.documentId }}` |
+    | **Send Headers** | ✅ (checked)                                                                                  |
+    </Accordion>
 
-Now, fetch the document metadata to get the file URL. Use the `documentId` acquired from the `Webhook` node and the `access_token` from the previous node. Add another **HTTP Request** node:
+    <Accordion title="Header Parameters">
+    | Header        | Value (Expression)                                      |
+    | :------------ | :------------------------------------------------------ |
+    | Authorization | `Bearer {{ $('HTTP Request').item.json.access_token }}` |
+    </Accordion>
 
-| Setting               | Value                                                                                        |
-| :-------------------- | :------------------------------------------------------------------------------------------- |
-| **Method**            | GET                                                                                          |
-| **URL**               | `https://api.lucidtech.ai/v1/documents/{{ $('Webhook').item.json.body.context.documentId }}` |
-| **Send Headers**      | ✅ (checked)                                                                                  |
-| **Header Parameters** | See table below                                                                              |
+    <Image src="/images/image_2025-09-18_162113231.png" alt="Fetch document metadata in n8n" />
+  </Step>
 
-**Header Parameters**
+  <Step title="Download the file">
+    Add a final **HTTP Request** node with the parameters below. Configure the node to return binary if you want to store or pass the file downstream.
 
-| Name          | Value (Expression)                                      |
-| :------------ | :------------------------------------------------------ |
-| Authorization | `Bearer {{ $('HTTP Request').item.json.access_token }}` |
+    <Accordion title="Parameters">
+    | Parameter        | Value                 |
+    | :--------------- | :-------------------- |
+    | **Method**       | GET                   |
+    | **URL**          | `{{ $json.fileUrl }}` |
+    | **Send Headers** | ✅ (checked)           |
+    </Accordion>
 
-Leave everything else as default.\
-_(See illustration below)_
+    <Accordion title="Header Parameters">
+    | Header        | Value (Expression)                                      |
+    | :------------ | :------------------------------------------------------ |
+    | Authorization | `Bearer {{ $('HTTP Request').item.json.access_token }}` |
+    </Accordion>
 
-<img
-  src="/images/image_2025-09-18_162113231.png"
-  alt="Step 3"
-  height="300"
-  className="rounded-lg"
-/>
+    <Image src="/images/image_2025-09-18_164117284.png" alt="Download the file in n8n" />
+  </Step>
+</Steps>
 
-#### 4. Download the File
+## Best practices
+- Keep node names stable (e.g., `Webhook`, `HTTP Request`) if you use expressions that reference them
+- Return a fast **2xx** from the Webhook node; perform longer work asynchronously downstream
+- Store secrets using n8n Credentials instead of hardcoding values
+- Use the Webhook’s **Production URL** for live traffic
 
-With the `fileUrl` acquired from the previous node and the same `access_token` used in the previous node, add one more **HTTP Request** node to download it:
-
-| Setting               | Value                 |
-| :-------------------- | :-------------------- |
-| **Method**            | GET                   |
-| **URL**               | `{{ $json.fileUrl }}` |
-| **Send Headers**      | ✅ (checked)           |
-| **Header Parameters** | See table below       |
-
-**Header Parameters**
-
-| Name          | Value (Expression)                                      |
-| :------------ | :------------------------------------------------------ |
-| Authorization | `Bearer {{ $('HTTP Request').item.json.access_token }}` |
-
-Leave everything else as default.\
-_(See illustration below)_
-
-<img
-  src="/images/image_2025-09-18_164117284.png"
-  alt="Step 4"
-  height="300"
-  className="rounded-lg"
-/>
-
-#### 5. Done!
-
-The file is now available in your workflow.
+## Troubleshooting
+- No requests arriving in n8n: verify the export URL and click **Test webhook** in Cradl AI; ensure the Webhook node is active
+- 401 from token or API calls: check `client_id`/`client_secret`, `grant_type=client_credentials`, and `audience=https://api.cradl.ai/v1`
+- Expression resolves to `undefined`: confirm node names match your expressions and inspect the incoming JSON with the Expression Editor to validate the path (e.g., `body.context.documentId`)
+- Cannot download file: include the `Authorization: Bearer <ACCESS_TOKEN>` header when requesting `fileUrl`
