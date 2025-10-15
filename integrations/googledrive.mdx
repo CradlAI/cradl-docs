@@ -1,9 +1,68 @@
 ---
-title: "Google Drive "
+title: "Google Drive"
 icon: "/icons/googledrive.svg"
-description: "Import document files or export parsed data to a folder in Google Drive."
+description: "Use Google Drive as a trigger to send new files to your Cradl AI agent via Zapier."
 ---
+import { Image, Row } from '/snippets/utils.jsx';
 
-<Info>
-  This integration is coming soon.
-</Info>
+## Introduction
+Automatically send new files added to a Google Drive folder to your Cradl AI agent using Zapier. This guide walks you through creating a Zap with Google Drive as the trigger and Cradl AI as the action that extracts data from each file.
+
+## Before you begin
+- A [Zapier](https://www.zapier.com) account
+- A Google Drive folder with a sample file to test
+- A Cradl AI agent to process documents
+
+## Connecting your Cradl AI agent with Google Drive
+Follow the steps below to create a Zap that watches a Drive folder and processes new files in Cradl AI.
+
+<Steps>
+  <Step title="Get Cradl AI Zapier credentials">
+    In Cradl AI, open your agent and add a new trigger. Choose **Zapier** from the list of integrations. Copy the **Client ID** and **Client Secret** from the integration panel.
+
+    <Image src="/images/zapier-config-panel.png" alt="Copy Client ID and Client Secret from the Cradl AI integration panel" />
+  </Step>
+
+  <Step title="Create a Zap with Google Drive as the trigger">
+    In Zapier, click **Create Zap**. For the **Trigger**, select **Google Drive** and choose an event:
+    - **New File in Folder**. Fires when a file is added to a specific folder. *(Recommended)*
+    - **New File**. Fires when a file is added anywhere you specify. *(Alternative)*
+
+    Connect your Google account, then specify **Drive** and **Folder**. Test the trigger and make sure Zapier finds a sample file.
+  </Step>
+
+  <Step title="Add the Cradl AI action">
+    Add an action step and select **Cradl AI**. For **Action Event**, choose **Extract Data From Document**.
+
+    <Row>
+      <Image src="/images/zapier-select-cradl.png" alt="Select Cradl AI as the action app in Zapier" />
+      <Image src="/images/zapier-setup-step.png" alt="Choose Extract Data From Document action in Zapier" />
+    </Row>
+
+    Under **Account**, click **Connect a new account** and paste the **Client ID** and **Client Secret** from Step 1. Click **Continue**.
+  </Step>
+
+  <Step title="Configure the action inputs">
+    Configure the Cradl AI action by specifying **Agent**, **Document** and **Filename** *(optional)*.
+
+    <Image src="/images/zapier-config.png" alt="Configure the Cradl AI action in Zapier" />
+
+    <Tip>To limit to specific file types, add a Zapier **Filter** step between the trigger and action to allow only PDF, PNG, or JPG (or whichever formats your agent supports).</Tip>
+  </Step>
+
+  <Step title="Test and publish">
+    Run a test for the Cradl AI action. Confirm that the action succeeds and that you can see extracted fields in the output. Then **Publish** your Zap to start processing new files dropped into the selected Google Drive folder.
+  </Step>
+</Steps>
+
+Your Zap now sends new Google Drive files to your Cradl AI agent automatically.
+
+## Tips
+- Use a dedicated “inbox” folder in Drive for documents you want processed, and move or archive files after processing to avoid re‑triggers.
+- If the Drive trigger doesn’t include the expected file object, switch to the **New File in Folder** event and ensure the file is added after the Zap is turned on.
+- For larger files, allow extra time for Google Drive and Zapier to make the file available to downstream steps.
+
+## Troubleshooting
+- Cradl AI action fails: Reconnect the **Cradl AI** account in Zapier using fresh credentials from the Cradl AI integration panel, then re‑test the step.
+- No file in the action: In the Cradl AI step, ensure **Document** is mapped to the Google Drive `File` output (not a URL or name field).
+- Zap doesn’t trigger: Verify the watched folder is correct and that the file was added after the Zap was turned on. For Shared Drives, enable Team Drives in the trigger setup.
