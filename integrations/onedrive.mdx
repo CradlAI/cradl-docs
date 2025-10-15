@@ -1,9 +1,68 @@
 ---
 title: "OneDrive"
 icon: "/icons/onedrive.svg"
-description: "Import document files or export parsed data to a folder in OneDrive."
+description: "Trigger your Cradl AI agent from OneDrive using Power Automate."
 ---
 
-<Info>
-  **Note:** This integration is coming soon\!
-</Info>
+import { Image, Row } from '/snippets/utils.jsx';
+
+## Introduction
+Automatically process new files added to a OneDrive folder by connecting OneDrive to your Cradl AI agent through Power Automate. This guide sets up a flow that watches a folder in OneDrive for Business and sends each new file to Cradl AI for extraction.
+
+## Before you begin
+- A Microsoft 365 work or school account with access to OneDrive for Business
+- Access to Power Automate and the Cradl AI connector in your tenant
+- A Cradl AI agent ready to process documents
+- A test file in your OneDrive to validate the flow
+
+## Connect OneDrive to your Cradl AI agent
+Follow the steps below to create a Power Automate flow that triggers on new files in OneDrive and forwards them to Cradl AI.
+
+<Steps>
+  <Step title="Enable the Power Automate trigger in Cradl AI">
+    In Cradl AI, open your agent and add a new trigger. Choose **Power Automate** and select **Import from Power Automate**. Copy the **Client Credentials** value from the configuration panel — you’ll paste this when creating the connection in Power Automate.
+
+    <Image src="/images/download.png" alt="Copy client credentials from the Cradl AI integration panel" />
+  </Step>
+
+  <Step title="Create a new automated flow in Power Automate">
+    In Power Automate, click **New flow** and choose **Automated cloud flow**. Name the flow (for example, "Send invoices to Cradl AI").
+
+    <Image src="/images/onedrive-pa-trigger.png" alt="Create a new automated cloud flow in Power Automate" />
+  </Step>
+
+  <Step title="Add the OneDrive trigger">
+    For the trigger, select **OneDrive for Business → When a file is created**. Click **Folder** and pick the folder to watch. Optionally, enable **Infer Content Type** to help downstream actions.
+    
+    Tip: If you want to limit which files are processed (for example, only PDFs), you can add a **Condition** step later to check the file extension before calling Cradl AI.
+  </Step>
+
+  <Step title="Get the file content">
+    Add the action **OneDrive for Business → Get file content**. For **File**, use the `Identifier` output from the **When a file is created**-trigger. This provides the binary content needed by Cradl AI.
+  </Step>
+
+  <Step title="Set up the Cradl AI action">
+    Add the action **Cradl AI → Extract Data From Document**. If prompted to create a connection, paste the **Client Credentials** from Step 1.
+    <Image src="/images/Screenshotfrom2025-10-0815-46-33.png" alt="Paste client credentials to create the Cradl AI connection" />
+    
+    To configure the action, set **Agent** to the Cradl AI agent that should process the document and set **Document** to the `File Content` from the previous OneDrive step. Optionally, set **Filename** to the file’s original name (for example, use the `Name` from the trigger) so the agent receives a proper file name.
+
+    <Image src="/images/onedrive-pa-cradl-complete.png" alt="Select the Extract Data From Document action in Power Automate" />
+  </Step>
+
+  <Step title="Test and turn on your flow">
+    Save the flow. Add a test file to the selected OneDrive folder. In Power Automate, open **Run history** and confirm the flow succeeds. Then open your Cradl AI agent and verify that the document has been sent to you agent.
+  </Step>
+</Steps>
+
+Your flow now sends new OneDrive files to your Cradl AI agent automatically.
+
+## Best practices
+- Use a dedicated “inbox” folder in OneDrive for files to be processed. Move or archive files after successful processing to avoid re‑processing.
+- To restrict by type, add a **Condition** after the trigger that checks `Name` ends with `.pdf`, `.png`, or `.jpg` (or the formats your agent supports).
+- After extraction, add steps to route results where you need them — for example, create a row in Excel, post to a webhook, or update a business system.
+
+## Troubleshooting
+- Cradl AI action fails with 401/403: Reopen the integration in Cradl AI, copy fresh client credentials, and update the Power Automate connection.
+- No file content in action: Ensure you added **Get file content** and mapped its `File Content` to the **Document** field.
+- Flow doesn’t trigger: Verify the correct OneDrive folder is selected and that the test file was added after the flow was turned on. For shared libraries or SharePoint-backed folders, confirm your account has access and the trigger supports that location.
