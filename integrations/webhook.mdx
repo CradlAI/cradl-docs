@@ -1,72 +1,107 @@
 ---
 title: "Webhook"
 icon: "/icons/webhook.svg"
-description: "Use webhooks to export data from Cradl AI using HTTP."
+description: "Use webhooks to export data from Cradl AI."
 sidebarTitle: "Webhook"
 ---
+import { Image } from '/snippets/utils.jsx';
 
-Webhooks allow you to receive event notifications from Cradl AI, such as when a document has been processed by an AI Agent. When an event occurs, Cradl AI will send an HTTP `POST` request to your webhook endpoint configured for the event type. The payload carries a JSON object. You can then use the information from the request's JSON payload to send the data where you need it.
+## Introduction
+Webhooks let you send structured results from your Cradl AI agent to any HTTP endpoint. Use this to push data into your own service or systems like n8n, Make, or custom APIs.
 
-### Exporting data from Cradl AI using Webhooks
+## Before you begin
+- Have an HTTPS endpoint that accepts JSON requests
+- Optionally prepare a request inspector (e.g., your own dev endpoint) to verify the payload
+- Upload a test document to your agent so there’s data to send
 
-Use Webhooks to send extracted document data from Cradl AI to any external system via HTTP.
+## Configure your webhook
+The steps below add the webhook export in Cradl AI and verify that your endpoint receives the payload.
 
 <Steps>
-  <Step title="Open the Integrations tab">
-    Go to the **Workflow** **section**, click the  **_\+ add export_** and select **Webhook**.
+  <Step title="Add a Webhook export">
+    In your agent, add a new export and select **Webhook**. You’ll see fields for the **URL**, **HTTP Method**, and optional **HTTP Headers**.
 
-    ![Webhook Step1 Web](/images/webhook-step1.webp)
+    <Image src="/images/webhook-step1.webp" alt="Webhook settings in Cradl AI" />
   </Step>
-  <Step title="Set the endpoint URL">
-    Enter the **URL** you want Cradl AI to send data to. Supported HTTP methods: **POST**, **PUT**, and **GET**.
+
+  <Step title="Define URL and method">
+    Enter your endpoint in **URL** and choose the **HTTP Method** your service expects (POST is common). Cradl AI sends a JSON body with the extracted data and run context.
   </Step>
-  <Step title="Choose HTTP method">
-    Select the method matching your receiving system’s expectations.
+
+  <Step title="Add headers (optional)">
+    Use **HTTP Headers** for authentication or routing, for example:
+    - `Authorization: Bearer <token>`
+    - `X-Webhook-Secret: <shared-secret>`
+    Your endpoint can verify these headers to authenticate the request.
   </Step>
-  <Step title="Add optional headers">
-    Add custom **HTTP headers** such as `Authorization` or `Content-Type` if required by your endpoint.
-  </Step>
-  <Step title="Receive data as JSON">
-    When a document is processed, Cradl AI sends a structured **JSON payload** to your endpoint.
+
+  <Step title="Test the webhook">
+    Click **Test webhook** to send a sample payload to your URL. Confirm that your endpoint receives the request and returns a **2xx** response.
   </Step>
 </Steps>
 
-### Payload structure
-
-The payload of a webhook is a JSON object that contains the following properties:
-
-- `documentId`: Unique ID of the processed document
-- `documentUrl`: Link to view the document in Cradl AI
-- `modelId`: ID of the model used for extraction
-- `modelName`: Name of the extraction model
-- `createdAt`: Time the document was processed
-- `fields`: Extracted fields from the document
-- `rawText`: Full raw text (optional, based on your export settings)
-
-Below is an example of the payload Cradl AI sends to your webhook URL:
+## Payload format
+Your endpoint receives a JSON body similar to the example below. The `output` section contains field values organized by group and field IDs. Each field entry includes the recognized `value`, original `rawValue`, `confidence`, and `page`. The `context` section includes references like `runId` and `documentId`.
 
 ```json
 {
-  "documentId": "doc_123456789",
-  "documentUrl": "https://app.cradl.ai/docs/doc_123456789",
-  "modelId": "model_abc123",
-  "modelName": "Invoice Parser",
-  "createdAt": "2025-08-01T12:00:00Z",
-  "fields": {
-    "invoice_number": "INV-1001",
-    "date": "2025-07-30",
-    "total_amount": "1599.00",
-    "currency": "USD",
-    "vendor_name": "Example Corp"
+  "output": {
+    "n2379dpkjj": [
+      {
+        "d6xz8w5wnr": {
+          "rawValue": "The Meat",
+          "value": "The Meat",
+          "confidence": 0.926,
+          "page": 0,
+          "name": "Merchant"
+        },
+        "2i1sspmmxw": {
+          "rawValue": "2017-05-23",
+          "value": "2017-05-23",
+          "confidence": 0.945,
+          "page": 0,
+          "name": "Purchase Date"
+        },
+        "a8b40ix8k9": {
+          "rawValue": "138,00",
+          "value": "138",
+          "confidence": 0.982,
+          "page": 0,
+          "name": "Total Amount"
+        },
+        "s5otx28oyk": {
+          "rawValue": "SEK",
+          "value": "SEK",
+          "confidence": 0.244,
+          "page": 0,
+          "name": "Currency"
+        }
+      }
+    ]
   },
-  "rawText": "Optional full text of the document..."
+  "context": {
+    "runId": "cradl:run:eee4d54340cfe1071a98735234a66755",
+    "documentId": "cradl:document:349e99a0d98046db8219b70393a3289f"
+  }
 }
 ```
 
-### 
+<Info>
+  Field and group IDs are stable identifiers. The human-friendly field name is available under `name` for convenience.
+  Prefer the normalized `value` when mapping, and fall back to `rawValue` if needed.
+  
+</Info>
 
-### **Securing Webhooks**
+## Downloading the file (optional)
+The webhook payload does not include the original file. If you need it, please refer to the [API reference](/api-reference/introduction).
 
-- Always use HTTPS endpoints.
-- Validate the **Signing Secret** on incoming requests to confirm they came from Cradl AI.
-- Respond quickly — your endpoint should acknowledge receipt with a `2XX` status code within a few seconds.
+## Best practices
+- Return a fast **2xx** response after receiving the payload; perform longer processing asynchronously if possible
+- Use a shared secret or token in headers to authenticate requests from Cradl AI
+- Log the entire body during development to validate field mappings
+
+## Troubleshooting
+- No requests arriving: Verify the **URL** is publicly reachable and click **Test webhook**
+- 401/403 from your service: Check header names/values and tokens
+- Missing fields: Upload and validate a fresh document, then test again to refresh available data
+- Cannot download file: Include the `Authorization: Bearer <ACCESS_TOKEN>` header when requesting `fileUrl`
