@@ -1,10 +1,6 @@
 export const Image = ({ size, style, ...rest }) => {
   let sizeStyle = { width: '75%' };
-  if (size === 'small') {
-    sizeStyle = { width: '45%' };
-  }
-
-  return <img {...rest} style={{...style, ...sizeStyle}} className="rounded-lg border border-gray-100" />
+  return <Frame><img {...rest} style={{...style, ...sizeStyle}} /></Frame>
 }
 
 export const Row = ({ children }) => {

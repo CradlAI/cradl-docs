@@ -2,23 +2,132 @@
 title: "Excel"
 icon: "/icons/excel.svg"
 sidebarTitle: "Excel"
-description: "Export extracted data to an Excel file."
+description: "Export extracted data from your Cradl AI agent to Microsoft Excel in OneDrive — either to separate workbooks or into a single workbook table."
 ---
+import { Image, Row } from '/snippets/utils.jsx';
 
-## Overview
+#### Introduction
+In this guide, we’ll go through the steps required to export data from a Cradl AI agent to a Microsoft Excel workbook.
 
-The Microsoft Excel integration allows you to write data to Excel spreadsehees from your Cradl AI workflow. It can append new rows, add a single row, or write to specific columns in your spreadsheet.
+#### Before you begin
+- A Microsoft 365 work or school account with access to **OneDrive**.
+- A sample document to test the export.
 
-### Basic node operation
+<Warning>Personal Microsoft accounts (e.g., @outlook.com, @hotmail.com) are not supported.</Warning>
 
-The Excel Writer integration works by mapping your workflow’s outputs to spreadsheet columns:
+#### Set up the Excel export
+Follow the steps below to set up your Cradl AI agent to export data to a Microsoft Excel workbook in OneDrive.
 
-**Note**: The integration only works with a proffesional account.
+<Steps>
+  <Step title="Add an Excel export">
+    In Cradl AI, open your agent and add a new export. Choose **Microsoft Excel** from the list of integrations.
+  </Step>
 
-1. **Sheet Connection**: Connect to an existing Google Sheet
-2. **Column Detection**: The node reads the headers in the first row of your selected sheet
-3. **Dynamic Inputs**: These headers become available as inputs to the node
-4. **Data Mapping**: Connect outputs from previous nodes to these column inputs
-5. **Execution**: When the flow runs, data is written to the corresponding columns
+  <Step title="Connect your Microsoft account">
+    Click **Connect** and sign in with your Microsoft account. Approve the requested permissions. When connected, the panel shows **Connected to Excel**.
+  </Step>
 
-### 
+  <Step title="Choose export mode">
+    Select one of the following export options:
+
+    <Columns cols={2}>
+      <Card
+        title="Export to separate workbooks"
+        icon="link"
+        href="#exporting-to-separate-workbooks"
+        arrow="true"
+        cta="Click here"
+      >
+        Choose this option if you want data from each processed document to be exported to a new workbook.
+      </Card>
+      <Card
+        title="Export to a single workbook"
+        icon="link"
+        href="#exporting-to-a-single-workbook"
+        arrow="true"
+        cta="Click here"
+      >
+        Choose this option if you want data from each processed document to be appended as rows to an existing workbook.
+      </Card>
+    </Columns>
+  </Step>
+
+</Steps>
+
+#### Exporting to separate workbooks
+
+<Steps>
+  <Step title="Pick a OneDrive folder">
+    Use the **Folder** picker to select where each generated workbook should be saved in OneDrive.
+
+    <Image src="/images/excel-select-folder.png" />
+
+    <Warning>If you're unable to find the folder you need, it is probably a [permissions](#permissions) issue.</Warning>
+  </Step>
+
+  <Step title="Test the export">
+    Process a test document with your agent to verify that the export works. A new workbook should appear in the selected OneDrive folder.
+  </Step>
+</Steps>
+
+
+
+
+#### Exporting to a single workbook
+
+<Steps>
+  <Step title="Prepare a workbook on OneDrive">
+    Ensure that you have an Excel workbook in OneDrive with a table containing the columns you want to populate. To create a new table in a workbook, click **Insert  → Table**.
+    
+    <Image src="/images/excel-workbook-sample.png" />
+  </Step>
+
+  <Step title="Select the workbook">
+    In Cradl AI, open your agent and the Excel configuration panel. In **Workbook**, search for the name of the workbook you created and select it. 
+    
+    <Image src="/images/excel-select-workbook.png" />
+    
+    <Warning>If you're unable to find the workbook you created, it is probably a [permissions](#permissions) issue.</Warning>
+  </Step>
+
+  <Step title="Select the table">
+    In **Table**, pick the Excel table inside that workbook (for example, `Table1`). If no tables are found, ensure that you have selected the right workbook and that it has a table in it.
+  </Step>
+
+  <Step title="Map fields to columns">
+    Under **Map fields**, choose which extracted field should populate each table column in your workbook (for example, we can map `Merchant` → `Vendor`, `Total Amount` → `Total Amount`). Any unmapped column remains empty. When you're done, it should look something like this:
+
+    <Image src="/images/excel-complete.png" />
+  </Step>
+
+  <Step title="Test the export">
+    Process a test document with your agent to verify that the export works.
+  </Step>
+</Steps>
+
+Your agent is now ready to export data to Microsoft Excel!
+
+## Permissions
+Cradl AI connects to Microsoft using your Microsoft 365 work or school account. By default, we can only search for and write to files that you own in your OneDrive (“My files”). Files that live in SharePoint/Teams or are owned by other people are different: even if you can open them in Microsoft 365, they won’t appear in our picker unless you allow broader access.
+
+If you can’t find a file or the list is empty, you have two options:
+
+1. Copy or move the workbook (or the target folder) into your own OneDrive “My files”, then refresh the picker.
+2. Click **Request additional access** in the orange message. This lets Cradl AI include shared locations you already have access to (for example, a SharePoint site or shared directory). It may require admin approval.
+
+#### Requesting elevated permissions
+When you choose option 2, click **Request additional access**. Cradl AI asks for permission to look beyond your personal OneDrive and include shared locations you already have access to (for example, a SharePoint site or shared directory). This doesn’t give Cradl access to anything you can’t already open; it only lets the file picker find those files. Some organizations require an administrator to approve this change.
+
+<Image src="/images/excel-elevate-permissions.png" />
+
+Follow the sign‑in prompt and accept the request for additional access so we can search those shared locations. If you see an admin‑approval message, contact your Microsoft 365 admin.
+
+#### For administrators
+In the Microsoft Entra admin center, go to **Enterprise applications**, select the Cradl AI app, open **Permissions**, and choose **Grant admin consent** for the app. You can also approve directly on the consent screen by selecting “Consent on behalf of your organization”.
+
+You still need edit rights on the target folder or workbook to export. Read‑only files won’t work. After permissions are changed or consent is granted, refresh the picker and try searching again.
+
+## Troubleshooting
+- Separate workbooks: If no files appear, confirm a **Folder** is selected and the export is enabled.
+- Single workbook: Ensure the chosen workbook exists, contains at least one Excel table, and that the correct **Table** is selected. Reopen the workbook to create a table if needed and refresh the list in Cradl AI.
+- Field mapping: If values don’t show up, verify that at least one table column has a mapped extracted field.
