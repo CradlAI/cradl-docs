@@ -102,18 +102,11 @@ Each webhook request is signed with an HMAC SHA‑256 signature so you can verif
 #### How the signature is computed
 Given a shared signing secret, the signature is computed on the concatenation of these exact byte sequences:
 
-1) HTTP method (e.g., `POST`), as bytes
-2) Full request URL (including query string), as bytes
-3) All HTTP headers except `X-Cradl-Signature`, sorted by header name and concatenated with no delimiter as `key:value` pairs, then concatenated together (still no delimiter).
-4) Raw request body bytes (the JSON payload)
+1. HTTP method (e.g., `POST`), as bytes
+2. Full request URL (including query string), as bytes
+3. All HTTP headers except `X-Cradl-Signature`, sorted by header name and concatenated with no delimiter as `key:value` pairs, then concatenated together (still no delimiter).
+4. Raw request body bytes (the JSON payload)
 
-<Info>
-  The signing secret is shared out-of-band and is not transmitted with the request. Any custom headers you add (for example `Authorization`) are included in the signed header set, but are not used as the secret.
-</Info>
-
-#### Verification checklist
-- Use the raw request body bytes (not a re‑serialized JSON object)
-- Compute HMAC SHA‑256 with your signing secret and compare using a timing‑safe comparison
 <Info>
 Reject requests where `X-Cradl-Timestamp` is too old (e.g., >5 minutes) or where a previously seen `X-Cradl-Nonce` is reused
 </Info>
