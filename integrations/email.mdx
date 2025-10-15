@@ -1,35 +1,36 @@
 ---
 title: "Mailhooks Trigger"
 icon: "/icons/email.svg"
-description: "Trigger your Agent by emailing documents to a dedicated email address."
+description: "Trigger your Cradl AI agent by emailing documents to a dedicated address."
 sidebarTitle: "Email (mailhooks)"
 ---
 
-Cradl AI now supports triggering document parsing workflows directly from incoming emails using **Mailhooks**. This integration allows you to automate document ingestion by simply sending or forwarding emails to a unique email address.
+import { Image, Row } from '/snippets/utils.jsx';
 
-### How It Works
+## Introduction
+Use Mailhooks to send documents to your Cradl AI agent by email. Each agent gets a unique email address; any supported attachments sent to that address are processed automatically.
 
-1. You get a unique email address tied to your Cradl AI Agent.
-2. You send or forward emails with attachments to this address.
-3. Cradl AI receives the email, extracts the attachment(s), and runs them through the specified Agent.
+## Before you begin
+- Have a Cradl AI agent ready to receive documents.
+- Prepare a test document to email as an attachment.
+- (Optional) Decide whether to restrict allowed senders for the trigger.
 
----
+## Set up your Mailhook
+Follow these steps to create the email trigger and test it with a sample document.
 
-### Setup Instructions
+<Steps>
+  <Step title="Add an Email trigger">
+    In Cradl AI, open your agent and add a new trigger. Choose **Email** from the list of integrations. Copy the generated email address (for example, `12345678910@agent.cradl.ai`).
+  </Step>
 
-### 1. Create a Mailhook Trigger
+  <Step title="Restrict allowed senders (optional)">
+    In the trigger settings, you can limit which email addresses are allowed to send documents. This helps prevent unwanted submissions.
+    
+    <Tip>Re-create the mailhook trigger or adjust the allowed senders list if the address is shared more broadly than intended.</Tip>
+  </Step>
 
-1. Navigate to the **Workflows** tab in your parser.
-2. Click **Add Trigger** → Choose **Email**.
-3. Copy your generated email address (e.g., `12345678910@agent.cradl.ai`).
-
----
-
-### 2. Send Documents via Email
-
-Send an email to the mailhook address with one or more supported attachments.
-
-**Example:**
+  <Step title="Send a test email">
+    Email the mailhook address with one or more supported attachments. Example:
 
 ```
 To: 12345678910@agent.cradl.ai
@@ -37,31 +38,33 @@ Subject: Invoice for July
 Attachments: invoice-july.pdf
 ```
 
-Attachments will be processed automatically.
+    Supported attachments: PDFs, PNGs, JPEGs, WEBPs, and TIFFs.
+  </Step>
 
----
+  <Step title="Verify processing">
+    Return to your agent and confirm the document run completed successfully. When processing finishes, the extracted data is available to any configured exports.
+  </Step>
+</Steps>
 
-## Security & Spam Protection
+Your agent now receives documents sent to the mailhook address and processes them automatically.
 
-- Mailhooks are tied to your account and can be regenerated or disabled anytime.
-- You can restrict allowed senders in the Trigger settings.
+## Troubleshooting
 
----
+- No attachments: emails without attachments are ignored.
+- Unsupported files: ensure attachments are a supported type and not password-protected.
+- Not receiving documents: double-check the mailhook address and any allowed-sender restrictions.
+- Forwarded messages: make sure your email client keeps attachments when forwarding (Gmail/Outlook work fine).
 
 ## FAQ
 
 <AccordionGroup>
   <Accordion title="Can I forward emails from Gmail or Outlook?">
-    Yes\! Just forward the email and make sure the attachments come through.
+    Yes. Forwarding works as long as attachments are preserved by your email client.
   </Accordion>
   <Accordion title="What types of attachments are supported?">
-    PDFs, PNGs, JPEGs, WEBPs and TIFFs.
+    PDFs, PNGs, JPEGs, WEBPs, and TIFFs.
   </Accordion>
   <Accordion title="What happens if an email has no attachment?">
-    The email will be ignored and no parsing will occur.
+    The email is ignored and no parsing occurs.
   </Accordion>
 </AccordionGroup>
-
----
-
-## 
