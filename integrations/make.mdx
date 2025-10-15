@@ -2,8 +2,101 @@
 title: "Make"
 icon: "/icons/make.svg"
 description: "Connect a Cradl AI agent to a scenario in Make."
+sidebarTitle: "Make"
 ---
+import { Image } from '/snippets/utils.jsx';
+
+## Introduction
+Use Cradl AI’s Webhook export to send extracted data to a Make scenario. You can also fetch and download the original file inside Make.
 
 <Info>
-  **Note:** A native Make integration is coming soon\! In the meantime, you can connect Cradl AI to Make using **webhooks**.
+  A native Make integration is coming soon. Until then, connect via **Webhook**.
 </Info>
+
+## Before you begin
+- A Make account with permission to create scenarios
+- A Cradl AI agent with at least one test document
+- API client credentials (`client_id`, `client_secret`) from your [workspace settings](https://rc.app.cradl.ai/settings/workspace)
+
+## Connect Cradl AI to Make
+Create a Custom webhook in Make and point your agent’s Webhook export to it.
+
+<Steps>
+  <Step title="Add a Custom webhook in Make">
+    In Make, create a new scenario and add the **Webhooks** app with the **Custom webhook** trigger. Click **Add** to create a new webhook, then copy the generated **Webhook URL**. Click **Run once** so the scenario is listening for a request.
+  </Step>
+
+  <Step title="Add a Webhook export in Cradl AI">
+    In your agent, add a new export and choose **Webhook**. Paste the Make **Webhook URL** into **URL** and set **HTTP Method** to **POST**. Click **Test webhook** and verify that the Make scenario receives a request (2xx). The captured request establishes the webhook’s data structure in Make.
+  </Step>
+</Steps>
+
+## Payload format
+The Webhook body includes extracted fields and context such as `context.documentId`. See the [Webhook → Payload format](./webhook) for a full example.
+
+## Download the file in Make (optional)
+Webhook payloads don’t include the original file. The steps below show how to get an access token, fetch the document metadata to obtain `fileUrl`, and then download the file.
+
+<Steps>
+  <Step title="Get an access token (HTTP → Make a request)">
+    Add an **HTTP > Make a request** module and configure it to request an OAuth token.
+
+    <Accordion title="Parameters">
+    | Parameter             | Value                                |
+    | :-------------------- | :----------------------------------- |
+    | **Method**            | POST                                 |
+    | **URL**               | `https://auth.cradl.ai/oauth2/token` |
+    | **Body type**         | `x-www-form-urlencoded`              |
+    | **Body**              | See table below                      |
+    </Accordion>
+
+    <Accordion title="Body Fields">
+    | Field          | Value                     |
+    | :------------- | :------------------------ |
+    | client_id      | `your client id here`     |
+    | client_secret  | `your client secret here` |
+    | grant_type     | `client_credentials`      |
+    | audience       | `https://api.cradl.ai/v1` |
+    </Accordion>
+
+    Save `access_token` from the JSON response.
+  </Step>
+
+  <Step title="Fetch document metadata (get fileUrl)">
+    Add another **HTTP > Make a request** module to fetch document metadata using the `documentId` from the Webhooks module output.
+
+    <Accordion title="Parameters">
+    | Parameter        | Value                                                                                       |
+    | :--------------- | :------------------------------------------------------------------------------------------ |
+    | **Method**       | GET                                                                                         |
+    | **URL**          | `https://api.lucidtech.ai/v1/documents/<Document ID from Webhooks body.context.documentId>` |
+    | **Headers**      | Add `Authorization: Bearer <access_token from previous step>`                               |
+    </Accordion>
+
+    The response includes `fileUrl`.
+  </Step>
+
+  <Step title="Download the file">
+    Add an **HTTP > Get a file** module (or use **Make a request** with file download enabled) to download the original file.
+
+    <Accordion title="Parameters">
+    | Parameter        | Value                          |
+    | :--------------- | :----------------------------- |
+    | **URL**          | `{{fileUrl from previous step}}` |
+    | **Headers**      | `Authorization: Bearer <access_token>` |
+    </Accordion>
+
+    The module returns the file as binary data, which you can pass to storage apps like Google Drive, OneDrive, or S3.
+  </Step>
+</Steps>
+
+## Best practices
+- Start the scenario in **Run once** mode when testing so Make captures the webhook sample and builds the data structure
+- Return a fast **2xx** from your first steps; branch long-running work downstream
+- Store secrets in Make’s secure fields (e.g., module fields or variables) rather than hardcoding
+
+## Troubleshooting
+- No requests arriving in Make: verify the export URL and click **Test webhook** in Cradl AI; ensure the scenario is in **Run once** or scheduled
+- 401 from token or API calls: check `client_id`/`client_secret`, `grant_type=client_credentials`, and `audience=https://api.cradl.ai/v1`
+- Missing fields when mapping: run the scenario once to recapture the webhook payload and refresh the data structure
+- Cannot download file: include the `Authorization: Bearer <ACCESS_TOKEN>` header when requesting `fileUrl`
